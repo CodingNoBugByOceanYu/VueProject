@@ -58,9 +58,6 @@ export default {
       console.log('Index created');
       const color = '#acd';
       const instance = jsPlumb.getInstance({
-        // notice the 'curviness' argument to this Bezier curve.
-        // the curves on this page are far smoother
-        // than the curves on the first demo, which use the default curviness value.
         Connector: 'Flowchart',
         Endpoint: ['Dot', { radius: 5 }],
         DragOptions: { cursor: 'pointer', zIndex: 5000 },
