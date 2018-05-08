@@ -1,5 +1,6 @@
   <template>
     <div id="diagramContainer">
+        <Progress :percent="percent" status="active" v-show="!hideProgress"></Progress>
         <div class="addOpes">
             <button @click="addAope()" class="btn btn-green"> 添加一个 </button>
         </div>
@@ -23,7 +24,9 @@
         data: function () {
             return {
                 counter: 0,
-                firstArray: []
+                percent: 10,
+                firstArray: [],
+                hideProgress: false
             }
         },
         methods: {
@@ -116,6 +119,15 @@
             jsPlumb.ready(() => {
                 this.createFlow(this.data);
             });
+
+            setInterval(() => {
+                if (this.percent !== 100) {
+                    this.percent += 10;
+                } else {
+                    this.hideProgress = true;
+                }
+            }, 100);
+            
         }
     }
 </script> 
