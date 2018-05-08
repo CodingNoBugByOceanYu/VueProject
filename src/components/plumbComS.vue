@@ -101,7 +101,7 @@ export default {
                     uuid: `${point._id}-bottom`,
                     anchor: 'Bottom',
                     maxConnections: -1,
-                    // connectorStyle: { stroke: 'green' },
+                    connectorStyle: { stroke: 'green' },
                 }, {
                     isSource: true,
                     isTarget: true,
@@ -112,7 +112,7 @@ export default {
                     uuid: `${point._id}-top`,
                     anchor: 'Top',
                     maxConnections: -1,
-                    // connectorStyle: { stroke: 'gray' },
+                    connectorStyle: { stroke: 'gray' },
                 }, {
                     isSource: true,
                     isTarget: true,
@@ -123,7 +123,7 @@ export default {
                     uuid: `${point._id}-top`,
                     anchor: 'Top',
                     maxConnections: -1,
-                    // connectorStyle: { stroke: 'gray' },
+                    connectorStyle: { stroke: 'gray' },
                 }, {
                     isSource: true,
                     isTarget: true,
@@ -133,7 +133,7 @@ export default {
                     uuid: `${point._id}-bottom`,
                     anchor: 'Bottom',
                     maxConnections: -1,
-                    // connectorStyle: { stroke: 'green' },
+                    connectorStyle: { stroke: 'green' },
                 }, {
                     isSource: true,
                     isTarget: true,

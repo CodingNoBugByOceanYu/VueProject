@@ -49,9 +49,6 @@
             createFlow(flowData) {
                 const color = '#acd';
                 const instance = jsPlumb.getInstance({
-                    // notice the 'curviness' argument to this Bezier curve.
-                    // the curves on this page are far smoother
-                    // than the curves on the first demo, which use the default curviness value.
                     Connector: 'Flowchart',
                     Endpoint: ['Dot', { radius: 5 }],
                     DragOptions: { cursor: 'pointer', zIndex: 5000 },
@@ -60,17 +57,17 @@
                     HoverPaintStyle: { stroke: '#ec9f2e', lineWidth: 4 },
                     EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
                     ConnectionOverlays: [
-                    ['Arrow', {
-                        location: 1,
-                        id: 'arrow',
-                        length: 4,
-                        foldback: 0.8,
-                        paintStyle: {
-                        lineWidth: 5,
-                        stroke: 'lightgray',
-                        fill: 'lightgray',
-                        },
-                    }],
+                        ['Arrow', {
+                            location: 1,
+                            id: 'arrow',
+                            length: 4,
+                            foldback: 0.8,
+                            paintStyle: {
+                            lineWidth: 5,
+                            stroke: 'lightgray',
+                            fill: 'lightgray',
+                            },
+                        }],
                     ],
                     Container: 'points',
                 });
