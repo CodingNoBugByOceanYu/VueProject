@@ -1,0 +1,154 @@
+{
+    "root": {
+        "response_head": {
+            "return_code": "000000",
+            "return_msg": "操作成功",
+            "send_time": "2017-09-21 09:57:58"
+        },
+        "response_body": [
+            {
+                "heading": false,
+                "icon": "icon-folder",
+                "menuPid": "",
+                "label": "",
+                "sort": 1,
+                "params": "",
+                "translate": "sidebar.nav.menu.sysmanage.SYSMANAGE",
+                "submenu": [
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "2",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.sysmanage.USER",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "userManage",
+                        "menuId": "6",
+                        "text": "用户管理"
+                    },
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "2",
+                        "label": "",
+                        "sort": 2,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.sysmanage.ROLE",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "roleManage",
+                        "menuId": "7",
+                        "text": "角色管理"
+                    }],
+                "alert": "",
+                "sref": "#",
+                "menuId": "2",
+                "text": "系统管理"
+            },
+            {
+                "heading": false,
+                "icon": "icon-folder",
+                "menuPid": "",
+                "label": "",
+                "sort": 1,
+                "params": "",
+                "translate": "sidebar.nav.menu.settle.SETTLE",
+                "submenu": [
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "29",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.settle.DATASOURCE",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "subject",
+                        "menuId": "31",
+                        "text": "源数据管理"
+                    }
+                ],
+                "alert": "",
+                "sref": "#",
+                "menuId": "29",
+                "text": "结算管理"
+            },
+            {
+                "heading": false,
+                "icon": "icon-folder",
+                "menuPid": "",
+                "label": "",
+                "sort": 3,
+                "params": "",
+                "translate": "sidebar.nav.menu.scheduler.SCHEDULER",
+                "submenu": [
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "18",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.scheduler.JOBDEV",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "taskDevelop",
+                        "menuId": "19",
+                        "text": "作业开发"
+                    }
+                ],
+                "alert": "",
+                "sref": "#",
+                "menuId": "18",
+                "text": "调度管理"
+            },
+            {
+                "heading": false,
+                "icon": "icon-folder",
+                "menuPid": "",
+                "label": "",
+                "sort": 5,
+                "params": "",
+                "translate": "sidebar.nav.menu.data.DATA",
+                "submenu": [
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "41",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.data.DATASYNCEXEC",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "dataSyncExec",
+                        "menuId": "44",
+                        "text": "同步日志"
+                    },
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "41",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.data.DATASYNCEXEC",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "testComponent",
+                        "menuId": "45",
+                        "text": "测试组件"
+                    }
+                ],
+                "alert": "",
+                "sref": "#",
+                "menuId": "41",
+                "text": "数据管理"
+            }
+        ]
+    }
+}
