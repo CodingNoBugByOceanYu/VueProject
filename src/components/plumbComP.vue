@@ -50,12 +50,12 @@
                 const color = '#acd';
                 const instance = jsPlumb.getInstance({
                     Connector: 'Flowchart',
-                    Endpoint: ['Dot', { radius: 5 }],
+                    // Endpoint: ['Dot', { radius: 5 }],
                     DragOptions: { cursor: 'pointer', zIndex: 5000 },
                     PaintStyle: { lineWidth: 5, stroke: '#445566' },
                     EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
                     HoverPaintStyle: { stroke: '#ec9f2e', lineWidth: 4 },
-                    EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
+                    // EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
                     ConnectionOverlays: [
                         ['Arrow', {
                             location: 1,
@@ -63,9 +63,9 @@
                             length: 4,
                             foldback: 0.8,
                             paintStyle: {
-                            lineWidth: 5,
-                            stroke: 'lightgray',
-                            fill: 'lightgray',
+                                lineWidth: 5,
+                                stroke: 'lightgray',
+                                fill: 'lightgray',
                             },
                         }],
                     ],
@@ -129,14 +129,10 @@
     }
 </script> 
 <style>
-.wholeCss {
-    height: 200px;
-    width: 40px;
-}
 
 .item {
-    height: 20px;
-    width: 40px;
+    height: 150px;
+    width: 80px;
     border: 1px solid #ccc4c4;
     border-radius: 10px;
     position:absolute;
