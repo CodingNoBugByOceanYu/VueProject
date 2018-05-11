@@ -50,7 +50,7 @@
                 const color = '#acd';
                 const instance = jsPlumb.getInstance({
                     Connector: 'Flowchart',
-                    // Endpoint: ['Dot', { radius: 5 }],
+                    Endpoint: ['Dot', { radius: 5 }],
                     DragOptions: { cursor: 'pointer', zIndex: 5000 },
                     PaintStyle: { lineWidth: 5, stroke: '#445566' },
                     EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
