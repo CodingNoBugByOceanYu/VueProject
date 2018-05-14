@@ -1,5 +1,5 @@
   <template>
-    <div id="diagramContainer">
+    <div id="diagramContainer" class="map">
         <Progress :percent="percent" status="active" v-show="!hideProgress"></Progress>
         <div class="addOpes">
             <button @click="addAope()" class="btn btn-green"> 添加一个 </button>
@@ -157,5 +157,15 @@
     background: #c5bcbc;
     border: 1px solid gray;
     border-radius: 10px;
+}
+
+.map {
+    margin-top: 0px;
+    height: 100%;
+    width: 110%;
+    background: #f7f7f7 url('../../static/img/process-bg.png') 0 0;
+    overflow-x: visible;
+    position: fixed;
+    margin-left: -20px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="panel-body points demo flow_chart" id="points">
+  <div class="panel-body points demo flow_chart map" id="points">
   </div>
 </template>
 
@@ -179,5 +179,14 @@ export default {
 }
 .point.chart_act_1 {
   color: #fac;
+}
+.map {
+    margin-top: 0px;
+    height: 100%;
+    width: 110%;
+    background: #f7f7f7 url('../../static/img/process-bg.png') 0 0;
+    overflow-x: visible;
+    position: fixed;
+    margin-left: -20px;
 }
 </style>
