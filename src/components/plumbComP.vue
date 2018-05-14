@@ -5,8 +5,8 @@
             <button @click="addAope()" class="btn btn-green"> 添加一个 </button>
         </div>
 
-        <div id="item_left" class="item" style="top:100px;"></div>
-        <div id="item_right" class="item" style="top:150px; left:200px;"></div>
+        <div id="item_left" class="item" style="top:100px; left:150px;"></div>
+        <div id="item_right" class="item" style="top:150px; left:300px;"></div>
 
         <div style="margin-left: 85%;">
             <div class="tempClass" v-show="firstArray.length > 0" v-for="temp in firstArray" :key="temp.id">

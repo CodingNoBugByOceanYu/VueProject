@@ -499,6 +499,8 @@
 
 <script>
     import $ from 'jquery'
+    
+    const color = '#acd';
     export default {
         name: 'plumbComp',
         data: function () {
@@ -516,34 +518,7 @@
             }
         },
         mounted(){
-            const color = '#acd';
-
             jsPlumb.ready(() => {
-                jsPlumb.importDefaults({  
-                    Connector: 'Flowchart',
-                    Endpoint: ['Dot', { radius: 5 }],
-                    DragOptions: { cursor: 'pointer', zIndex: 5000 },
-                    PaintStyle: { lineWidth: 5, stroke: '#445566' },
-                    EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
-                    HoverPaintStyle: { stroke: '#ec9f2e', lineWidth: 4 },
-                    EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
-                    ConnectionOverlays: [
-                        ['Arrow', {
-                            location: 1,
-                            id: 'arrow',
-                            length: 4,
-                            foldback: 0.8,
-                            paintStyle: {
-                                lineWidth: 5,
-                                stroke: 'lightgray',
-                                fill: 'lightgray',
-                            },
-                            width: 20
-                        }],
-                    ],
-                    Container: 'points'
-                })
-
                 this.createFlow();
             });
         },
@@ -595,7 +570,30 @@
         },
         methods: {
             createFlow() {
-                this.instance = jsPlumb.getInstance();
+                this.instance = jsPlumb.getInstance({
+                    Connector: 'Flowchart',
+                    Endpoint: ['Dot', { radius: 5 }],
+                    DragOptions: { cursor: 'pointer', zIndex: 5000 },
+                    PaintStyle: { lineWidth: 5, stroke: '#445566' },
+                    EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
+                    HoverPaintStyle: { stroke: '#ec9f2e', lineWidth: 4 },
+                    EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
+                    ConnectionOverlays: [
+                        ['Arrow', {
+                            location: 1,
+                            id: 'arrow',
+                            length: 4,
+                            foldback: 0.8,
+                            paintStyle: {
+                                lineWidth: 5,
+                                stroke: 'lightgray',
+                                fill: 'lightgray',
+                            },
+                            width: 20
+                        }],
+                    ],
+                    Container: 'points'
+                });
             },
             addFirst() {
                 this.bottom++;
