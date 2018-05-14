@@ -435,7 +435,7 @@
                     </div>
                 </div>
             </div>
-            <div class="node" id="node4" @mouseover="showPannel5 = true" @mouseleave="showPannel5 = false">
+            <div class="node" id="node5" @mouseover="showPannel5 = true" @mouseleave="showPannel5 = false">
                 <img src="../../static/img/new/控制.png" class="top-arrow">
                 <div v-show="showPannel5" class="pannerlCss"> 
                     <div class="Prow"  @click="addFifth()"> 
@@ -471,7 +471,7 @@
             <a class="process-release"></a>  
         </div>
 
-        <div class="save">
+        <div class="save" v-show="showRightPannel">
             <div class="operaDiv">
                 <p>编码</p>
                 <div>
@@ -490,6 +490,9 @@
                     <textarea class="textarea"> </textarea>
                 </div>
             </div>
+            <div class="operaDiv">
+                <button class="btn btn-green" @click="getAllConnection()"> 获取连接 </button>
+            </div>
         </div>
     </div>
 </template> 
@@ -505,6 +508,7 @@
                 showPannel3: false,
                 showPannel4: false,
                 showPannel5: false,
+                showRightPannel: false,
                 top: 0,
                 bottom: 0,
                 both: 0,
@@ -512,8 +516,35 @@
             }
         },
         mounted(){
+            const color = '#acd';
+
             jsPlumb.ready(() => {
-                this.createFlow(this.data);
+                jsPlumb.importDefaults({  
+                    Connector: 'Flowchart',
+                    Endpoint: ['Dot', { radius: 5 }],
+                    DragOptions: { cursor: 'pointer', zIndex: 5000 },
+                    PaintStyle: { lineWidth: 5, stroke: '#445566' },
+                    EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
+                    HoverPaintStyle: { stroke: '#ec9f2e', lineWidth: 4 },
+                    EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
+                    ConnectionOverlays: [
+                        ['Arrow', {
+                            location: 1,
+                            id: 'arrow',
+                            length: 4,
+                            foldback: 0.8,
+                            paintStyle: {
+                                lineWidth: 5,
+                                stroke: 'lightgray',
+                                fill: 'lightgray',
+                            },
+                            width: 20
+                        }],
+                    ],
+                    Container: 'points'
+                })
+
+                this.createFlow();
             });
         },
         watch: {
@@ -525,6 +556,7 @@
                     var endpointTop = { isTarget:true};
 
                     jspb.addEndpoint('bottom' + _this.top, { anchor:"Top", enabled: true}, endpointTop );
+
                     jspb.draggable($('.point'));
                 }
             },
@@ -536,6 +568,7 @@
                     var endpointBottom = { isSource:true};
 
                     jspb.addEndpoint('top' + _this.bottom, { anchor:"Bottom", enabled: true}, endpointBottom );
+
                     jspb.draggable($('.point'));
                 }
             },
@@ -550,55 +583,41 @@
                     };
 
                     jspb.addEndpoints('both' + _this.both, [{ anchor:"Top", enabled: true},
-                    { anchor:"Bottom", enabled: true}], endpoint );
+                        { anchor:"Bottom", enabled: true}], endpoint );
 
                     jspb.draggable($('.point'));
+
+                    $('#' + 'both' + _this.both).click(function () {
+                        _this.showRightPannel = !_this.showRightPannel;
+                    });
                 }
             }
         },
         methods: {
             createFlow() {
-                const color = '#acd';
-                this.instance = jsPlumb.getInstance({
-                    Connector: 'Flowchart',
-                    Endpoint: ['Dot', { radius: 5 }],
-                    DragOptions: { cursor: 'pointer', zIndex: 5000 },
-                    PaintStyle: { lineWidth: 5, stroke: '#445566' },
-                    EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
-                    HoverPaintStyle: { stroke: '#ec9f2e', lineWidth: 4 },
-                    // EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
-                    ConnectionOverlays: [
-                        ['Arrow', {
-                            location: 1,
-                            id: 'arrow',
-                            length: 4,
-                            foldback: 0.8,
-                            paintStyle: {
-                                lineWidth: 5,
-                                stroke: 'lightgray',
-                                fill: 'lightgray',
-                            },
-                        }],
-                    ],
-                    Container: 'points',
-                });
+                this.instance = jsPlumb.getInstance();
             },
             addFirst() {
                 this.bottom++;
 
                 var id = 'top' + this.bottom,
                     template = `
-                    <div id=` + id +` class='point'> top </div>
+                    <div id=` + id +` class='point'> 开始 </div>
                 `;
                 $('.map').append(template);
+                $('#'+ id).css('margin-left', 80 + this.both * 40);
+                $('#'+ id).css('margin-top', 50 + this.both * 20);
             },
             addSecond() {
                 this.both++;
                 var id = 'both' + this.both,
                     template = `
-                    <div id=` + id +` class='point'> between </div>
+                    <div id=` + id +` class='point'> 过程 </div>
                 `;
                 $('.map').append(template);
+                                
+                $('#'+ id).css('margin-left', 80 + this.both * 20);
+                $('#'+ id).css('margin-top', 100 + this.both * 20);
                 this.count++;
             },
             addThird() {
@@ -612,9 +631,16 @@
 
                 var id = 'bottom' + this.top,
                     template = `
-                    <div id=` + id +` class='point'> bottom </div>
+                    <div id=` + id +` class='point'> 结束 </div>
                 `;
                 $('.map').append(template);
+                
+                $('#'+ id).css('margin-left', 100 + this.top * 20);
+                $('#'+ id).css('margin-top', 200 + this.top * 20);
+            },
+            getAllConnection() {
+                var list = this.instance.getAllConnections();//获取所有的链接
+                console.log('所有连接', list);
             }
         }
     }
@@ -784,13 +810,12 @@
 }
 
 .point{
-    height: 40px;
-    width: 20px;
+    height: 80px;
+    width: 100px;
     border: 3px solid #ccc4c4;
     border-radius: 5px;
     position:absolute;
-    margin-left: 100px;
-    margin-top: 100px;
+    background: url('../../static/img/new/二进制文件阅读器.png') no-repeat 10px center;
 }
 
 
