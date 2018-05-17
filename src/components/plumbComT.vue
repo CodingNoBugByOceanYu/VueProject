@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = false">
+            <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = true">
                 <img src="../../static/img/new/-处理器-.png" class="top-arrow">
                 <div v-show="showPannel2" class="pannerlCss">
                     <div class="LRow">
@@ -461,7 +461,7 @@
 
         <dl class="process-operation">
             <dd>
-                <span class="process-cancle first" ng-click="deleteSelected()">撤销</span>
+                <span class="process-cancle first" @click="deleteSelected()">撤销</span>
             </dd>
             <dd><span class="process-checkIn" >检入</span></dd>
             <dd><span class="process-test" >仿真测试</span></dd>
@@ -499,14 +499,14 @@
 
 <script>
     import $ from 'jquery'
-    
+    require('../assets/css/diagram.css');
     const color = '#acd';
     export default {
         name: 'plumbComp',
         data: function () {
             return {
                 showPannel1: false,
-                showPannel2: false,
+                showPannel2: true,
                 showPannel3: false,
                 showPannel4: false,
                 showPannel5: false,
@@ -514,7 +514,8 @@
                 top: 0,
                 bottom: 0,
                 both: 0,
-                instance: {}
+                instance: {},
+                allInfos: []
             }
         },
         mounted(){
@@ -594,29 +595,46 @@
                     ],
                     Container: 'points'
                 });
+                
+                var _this = this;
+                this.instance.bind("connection",function(info){
+                    console.log('连接信息', info);
+                    this.allInfos.push(info);  
+                });
+
+
+                // this.instance.bind("click", function (conn, originalEvent) {
+                //     console.log('选中', conn);
+                //     _this.instance.deleteConnection(conn);
+                // });
             },
             addFirst() {
                 this.bottom++;
 
                 var id = 'top' + this.bottom,
                     template = `
-                    <div id=` + id +` class='point'> 开始 </div>
+                    <div id=` + id +` class='diagram diagram-node'> 开始 </div>
                 `;
                 $('.map').append(template);
                 $('#'+ id).css('margin-left', 80 + this.both * 40);
                 $('#'+ id).css('margin-top', 50 + this.both * 20);
+
+                this.allInfos.push($('#' + id));  
+                console.log(this.allInfos);  
             },
             addSecond() {
                 this.both++;
                 var id = 'both' + this.both,
                     template = `
-                    <div id=` + id +` class='point'> 过程 </div>
+                    <div id=` + id +` class='diagram diagram-node'> 过程 </div>
                 `;
                 $('.map').append(template);
                                 
                 $('#'+ id).css('margin-left', 80 + this.both * 20);
                 $('#'+ id).css('margin-top', 100 + this.both * 20);
-                this.count++;
+
+                this.allInfos.push($('#' + id)); 
+                console.log(this.allInfos); 
             },
             addThird() {
                 this.addSecond();
@@ -629,16 +647,30 @@
 
                 var id = 'bottom' + this.top,
                     template = `
-                    <div id=` + id +` class='point'> 结束 </div>
+                    <div id=` + id +` class='diagram diagram-node'> 结束 </div>
                 `;
                 $('.map').append(template);
                 
                 $('#'+ id).css('margin-left', 100 + this.top * 20);
                 $('#'+ id).css('margin-top', 200 + this.top * 20);
+
+                this.allInfos.push($('#' + id));
+                console.log(this.allInfos);
             },
             getAllConnection() {
                 var list = this.instance.getAllConnections();//获取所有的链接
                 console.log('所有连接', list);
+            },
+            deleteSelected() {
+                // var cons = this.instance.getConnections();
+                console.log(this.allInfos); 
+                if (_.isObject(this.allInfos.length - 1)) {
+                    this.instance.deleteConnection(this.allInfos[this.allInfos.length - 1]);
+                } else {
+                    this.instance.remove(this.allInfos[this.allInfos.length - 1]);
+                }
+                this.allInfos.pop();
+                console.log(this.allInfos);
             }
         }
     }
@@ -797,10 +829,14 @@
     cursor: pointer;
     background: #f5f6fa;
 }
-.Lf,
-.Lr {
-    width: 50%;
+.Lf {
+    width: 48%;
     float: left;
+}
+.Lr {
+    width: 46%;
+    float: left;
+    margin-left: 10px;
 }
 
 .Lf {
@@ -816,5 +852,8 @@
     background: url('../../static/img/new/二进制文件阅读器.png') no-repeat 10px center;
 }
 
+.Pright>p {
+    margin-left: 10px;
+}
 
 </style>
