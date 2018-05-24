@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = true">
+            <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = false">
                 <img src="../../static/img/new/-处理器-.png" class="top-arrow">
                 <div v-show="showPannel2" class="pannerlCss">
                     <div class="LRow">
@@ -499,14 +499,15 @@
 
 <script>
     import $ from 'jquery'
-    require('../assets/css/diagram.css');
+
     const color = '#acd';
+
     export default {
         name: 'plumbComp',
         data: function () {
             return {
                 showPannel1: false,
-                showPannel2: true,
+                showPannel2: false,
                 showPannel3: false,
                 showPannel4: false,
                 showPannel5: false,
@@ -531,9 +532,16 @@
                 if (val !== oldVal) {
                     var endpointTop = { isTarget:true};
 
-                    jspb.addEndpoint('bottom' + _this.top, { anchor:"Top", enabled: true}, endpointTop );
+                    jspb.addEndpoint('bottom' + _this.top, { anchor:"Left", enabled: true}, endpointTop );
 
                     jspb.draggable($('.point'));
+
+                    $('#bottom' + _this.top).click(function (e) {
+                        _this.deleteOther();
+
+                        $(e.target).addClass('selected');
+
+                    });
                 }
             },
             bottom: function (val, oldVal) {
@@ -543,9 +551,15 @@
                 if (val !== oldVal) {
                     var endpointBottom = { isSource:true};
 
-                    jspb.addEndpoint('top' + _this.bottom, { anchor:"Bottom", enabled: true}, endpointBottom );
+                    jspb.addEndpoint('top' + _this.bottom, { anchor:"Right", enabled: true}, endpointBottom );
 
                     jspb.draggable($('.point'));
+
+                    $('#top' + _this.bottom).click(function (e) {
+                        _this.deleteOther();
+
+                        $(e.target).addClass('selected');
+                    });
                 }
             },
             both: function (val, oldVal) {
@@ -558,18 +572,39 @@
                         isSource:true
                     };
 
-                    jspb.addEndpoints('both' + _this.both, [{ anchor:"Top", enabled: true},
-                        { anchor:"Bottom", enabled: true}], endpoint );
+                    jspb.addEndpoints('both' + _this.both, [{ anchor:"Left", enabled: true},
+                        { anchor:"Right", enabled: true}], endpoint );
 
                     jspb.draggable($('.point'));
 
-                    $('#' + 'both' + _this.both).click(function () {
+                    $('#' + 'both' + _this.both).click(function (e) {
                         _this.showRightPannel = !_this.showRightPannel;
+
+                        _this.deleteOther();
+
+                        $(e.target).addClass('selected');
                     });
                 }
             }
         },
         methods: {
+            deleteOther() {
+                if (this.top > 0) {
+                    for(var i = 0; i <= this.top; i++) {
+                        $('#bottom' + i).removeClass('selected');
+                    };
+                }
+                if (this.bottom > 0) {
+                    for(var i = 0; i <= this.bottom; i++) {
+                        $('#top' + i).removeClass('selected');
+                    };
+                }
+                if (this.both > 0) {
+                    for(var i = 0; i <= this.both; i++) {
+                        $('#both' + i).removeClass('selected');
+                    };
+                }
+            },
             createFlow() {
                 this.instance = jsPlumb.getInstance({
                     Connector: 'Flowchart',
@@ -581,14 +616,14 @@
                     EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
                     ConnectionOverlays: [
                         ['Arrow', {
-                            location: 1,
+                            location: 0.9,
                             id: 'arrow',
-                            length: 4,
+                            length: 15,
                             foldback: 0.8,
                             paintStyle: {
                                 lineWidth: 5,
-                                stroke: 'lightgray',
-                                fill: 'lightgray',
+                                stroke: '#2e6f9a',
+                                fill: '#2e6f9a',
                             },
                             width: 20
                         }],
@@ -597,6 +632,7 @@
                 });
                 
                 var _this = this;
+
                 this.instance.bind("connection",function(info){
                     console.log('连接信息', info);
                     this.allInfos.push(info);  
@@ -613,20 +649,19 @@
 
                 var id = 'top' + this.bottom,
                     template = `
-                    <div id=` + id +` class='diagram diagram-node'> 开始 </div>
+                    <div id=` + id +` class='point'> 开始 </div>
                 `;
                 $('.map').append(template);
                 $('#'+ id).css('margin-left', 80 + this.both * 40);
                 $('#'+ id).css('margin-top', 50 + this.both * 20);
 
-                this.allInfos.push($('#' + id));  
-                console.log(this.allInfos);  
+                this.allInfos.push($('#' + id)); 
             },
             addSecond() {
                 this.both++;
                 var id = 'both' + this.both,
                     template = `
-                    <div id=` + id +` class='diagram diagram-node'> 过程 </div>
+                    <div id=` + id +` class='point'> 过程 </div>
                 `;
                 $('.map').append(template);
                                 
@@ -634,7 +669,6 @@
                 $('#'+ id).css('margin-top', 100 + this.both * 20);
 
                 this.allInfos.push($('#' + id)); 
-                console.log(this.allInfos); 
             },
             addThird() {
                 this.addSecond();
@@ -647,7 +681,7 @@
 
                 var id = 'bottom' + this.top,
                     template = `
-                    <div id=` + id +` class='diagram diagram-node'> 结束 </div>
+                    <div id=` + id +` class='point'> 结束 </div>
                 `;
                 $('.map').append(template);
                 
@@ -655,7 +689,6 @@
                 $('#'+ id).css('margin-top', 200 + this.top * 20);
 
                 this.allInfos.push($('#' + id));
-                console.log(this.allInfos);
             },
             getAllConnection() {
                 var list = this.instance.getAllConnections();//获取所有的链接
@@ -705,6 +738,7 @@
     background: #fff;
     position: fixed;
     font-size: 14px;
+    z-index: 25;
 }
 
 .drag-box {
@@ -844,12 +878,16 @@
 }
 
 .point{
-    height: 80px;
-    width: 100px;
-    border: 3px solid #ccc4c4;
-    border-radius: 5px;
+    width: 55px;
+    height: 40px;
+    border: 2px solid #2e6f9a;
+    border-radius: 8px;
     position:absolute;
     background: url('../../static/img/new/二进制文件阅读器.png') no-repeat 10px center;
+}
+
+.point.selected {
+    border: 2px solid orange;
 }
 
 .Pright>p {
