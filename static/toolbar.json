@@ -1,0 +1,304 @@
+{
+    "toolbar": {
+        "first": [
+            {
+                "id": "1",
+                "text": "二进制文件阅读器",
+                "img": "../../static/img/new/二进制文件阅读器.png"
+            },
+            {
+                "id": "2",
+                "text": "excel读取器",
+                "img": "../../static/img/new/excel读取器.png"
+            },
+            {
+                "id": "3",
+                "text": "文件轮寻器",
+                "img": "../../static/img/new/文件轮寻器.png"
+            },
+            {
+                "id": "6",
+                "text": "读取数据库",
+                "img": "../../static/img/new/读取数据库.png"
+            },
+            {
+                "id": "5",
+                "text": "文本常量",
+                "img": "../../static/img/new/文本常量.png"
+            },
+            {
+                "id": "7",
+                "text": "文本读取",
+                "img": "../../static/img/new/文本读取.png"
+            },
+            {
+                "id": "8",
+                "text": "Unzip解压器",
+                "img": "../../static/img/new/Unzip解压器.png"
+            },
+            {
+                "id": "9",
+                "text": "XML读取",
+                "img": "../../static/img/new/XML读取.png"
+            }
+        ],
+        "second": [
+            {
+                "left": {
+                    "id": "10",
+                    "text": "Assert断言",
+                    "img": "../../static/img/new/Assert断言.png"
+                },
+                "right": {
+                    "id": "11",
+                    "text": "子流程嵌入",
+                    "img": "../../static/img/new/子流程嵌入.png"
+                },
+                "groupId": "1"
+            },
+            {
+                "left": {
+                    "id": "12",
+                    "text": "内容路由器",
+                    "img": "../../static/img/new/内容路由器.png"
+                },
+                "right": {
+                    "id": "13",
+                    "text": "重复数据去除",
+                    "img": "../../static/img/new/重复数据去除.png"
+                },
+                "groupId": "2"
+            },
+            {
+                "left": {
+                    "id": "16",
+                    "text": "延迟",
+                    "img": "../../static/img/new/延迟.png"
+                },
+                "right": {
+                    "id": "17",
+                    "text": "反序列化器",
+                    "img": "../../static/img/new/反序列化器.png"
+                },
+                "groupId": "3"
+            },
+            {
+                "left": {
+                    "id": "18",
+                    "text": "执行",
+                    "img": "../../static/img/new/执行.png"
+                },
+                "right": {
+                    "id": "19",
+                    "text": "文件操作",
+                    "img": "../../static/img/new/文件操作.png"
+                },
+                "groupId": "4"
+            },
+            {
+                "left": {
+                    "id": "20",
+                    "text": "分隔符格式化",
+                    "img": "../../static/img/new/分隔符格式化.png"
+                },
+                "right": {
+                    "id": "21",
+                    "text": "固定格式化",
+                    "img": "../../static/img/new/固定格式化.png"
+                },
+                "groupId": "5"
+            },
+            {
+                "left": {
+                    "id": "22",
+                    "text": "XML文件格式化",
+                    "img": "../../static/img/new/XML文件格式化.png"
+                },
+                "right": {
+                    "id": "23",
+                    "text": "检索",
+                    "img": "../../static/img/new/检索.png"
+                },
+                "groupId": "6"
+            },
+            {
+                "left": {
+                    "id": "24",
+                    "text": "映射",
+                    "img": "../../static/img/new/映射.png"
+                },
+                "right": {
+                    "id": "25",
+                    "text": "合并",
+                    "img": "../../static/img/new/合并.png"
+                },
+                "groupId": "7"
+            },
+            {
+                "left": {
+                    "id": "26",
+                    "text": "消息日志记录器",
+                    "img": "../../static/img/new/消息日志记录器.png"
+                },
+                "right": {
+                    "id": "27",
+                    "text": "数据模型比较器",
+                    "img": "../../static/img/new/数据模型比较器.png"
+                },
+                "groupId": "8"
+            },
+            {
+                "left": {
+                    "id": "28",
+                    "text": "倍增器",
+                    "img": "../../static/img/new/倍增器.png"
+                },
+                "right": {
+                    "id": "29",
+                    "text": "无操作",
+                    "img": "../../static/img/new/无操作.png"
+                },
+                "groupId": "9"
+            },
+            {
+                "left": {
+                    "id": "30",
+                    "text": "格式化解析器",
+                    "img": "../../static/img/new/格式化解析器.png"
+                },
+                "right": {
+                    "id": "31",
+                    "text": "脚本",
+                    "img": "../../static/img/new/脚本.png"
+                },
+                "groupId": "10"
+            },
+            {
+                "left": {
+                    "id": "32",
+                    "text": "XML解析器",
+                    "img": "../../static/img/new/XML解析器.png"
+                },
+                "right": {
+                    "id": "33",
+                    "text": "序列化",
+                    "img": "../../static/img/new/序列化.png"
+                },
+                "groupId": "11"
+            },
+            {
+                "left": {
+                    "id": "34",
+                    "text": "排序器",
+                    "img": "../../static/img/new/排序器.png"
+                },
+                "right": {
+                    "id": "35",
+                    "text": "顺序化",
+                    "img": "../../static/img/new/顺序化.png"
+                },
+                "groupId": "12"
+            },
+            {
+                "left": {
+                    "id": "36",
+                    "text": "暂存RDBMS",
+                    "img": "../../static/img/new/暂存RDBMS.png"
+                },
+                "right": {
+                    "id": "37",
+                    "text": "文本替换",
+                    "img": "../../static/img/new/文本替换.png"
+                },
+                "groupId": "13"
+            },
+            {
+                "left": {
+                    "id": "38",
+                    "text": "转换器",
+                    "img": "../../static/img/new/转换器.png"
+                },
+                "right": {
+                    "id": "39",
+                    "text": "联合器",
+                    "img": "../../static/img/new/联合器.png"
+                },
+                "groupId": "14"
+            },
+            {
+                "left": {
+                    "id": "40",
+                    "text": "web请求",
+                    "img": "../../static/img/new/web请求.png"
+                },
+                "right": {
+                    "id": "41",
+                    "text": "XSLT处理器",
+                    "img": "../../static/img/new/XSLT处理器.png"
+                },
+                "groupId": "15"
+            }
+        ],
+        "third": [
+            {
+                "id": "42",
+                "text": "二进制文件写入器",
+                "img": "../../static/img/new/二进制文件写入器.png"
+            },
+            {
+                "id": "43",
+                "text": "excel文件写入器",
+                "img": "../../static/img/new/excel文件写入器.png"
+            },
+            {
+                "id": "44",
+                "text": "电子邮件写入器",
+                "img": "../../static/img/new/电子邮件写入器.png"
+            },
+            {
+                "id": "45",
+                "text": "读取数据库",
+                "img": "../../static/img/new/读取数据库.png"
+            },
+            {
+                "id": "46",
+                "text": "SQL执行器",
+                "img": "../../static/img/new/SQL执行器.png"
+            },
+            {
+                "id": "47",
+                "text": "数据压缩器",
+                "img": "../../static/img/new/数据压缩器.png"
+            }
+        ],
+        "fourth": [
+            {
+                "id": "48",
+                "text": "HTTP请求",
+                "img": "../../static/img/new/HTTP请求.png"
+            },
+            {
+                "id": "49",
+                "text": "HTTP响应",
+                "img": "../../static/img/new/HTTP响应.png"
+            },
+            {
+                "id": "50",
+                "text": "消息订阅",
+                "img": "../../static/img/new/消息订阅.png"
+            }
+        ],
+        "fifth": [
+            {
+                "id": "51",
+                "text": "闸门",
+                "img": "../../static/img/new/闸门.png"
+            },
+            {
+                "id": "52",
+                "text": "截止器",
+                "img": "../../static/img/new/截止器.png"
+            }
+        ]
+    }
+}
