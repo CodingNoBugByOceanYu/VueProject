@@ -120,7 +120,6 @@
 
 <script>
     import $ from 'jquery'
-    import "jquery-ui";
 
     const color = '#acd';
 
@@ -132,12 +131,7 @@
             $.getJSON('../static/toolbar.json', function(json) {
                 var res = json.toolbar;
                 _this.toolBar = res;
-                console.log(_this.toolBar.first);
-
-                $('.Prow').draggable();
             });
-
-
         },
         data: function () {
             return {
@@ -253,7 +247,13 @@
             createFlow() {
                 this.instance = jsPlumb.getInstance({
                     Connector: 'Flowchart',
-                    Endpoint: ['Dot', { radius: 5 }],
+                    Endpoint: 'Dot',
+                    EndpointStyle : {
+                        strokeStyle : "transparent",
+                        fillStyle : "transparent",
+                        radius : 9,
+                        lineWidth : 2
+                    },
                     DragOptions: { cursor: 'pointer', zIndex: 5000 },
                     PaintStyle: { lineWidth: 5, stroke: '#445566' },
                     EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
@@ -261,16 +261,16 @@
                     EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
                     ConnectionOverlays: [
                         ['Arrow', {
-                            location: 0.95,
+                            location: 0.9,
                             id: 'arrow',
-                            length: 15,
-                            foldback: 0.8,
+                            length: 12,
+                            foldback: 1,
                             paintStyle: {
                                 lineWidth: 5,
                                 stroke: '#2e6f9a',
                                 fill: '#2e6f9a',
                             },
-                            width: 20
+                            width: 12
                         }],
                     ],
                     Container: 'points'
@@ -379,7 +379,7 @@
 }
 
 .save {
-    margin-top: -40%;
+    margin-top: 6%;
     overflow-y: auto;
     right: 0px;
     width: 240px;
@@ -528,12 +528,13 @@
 }
 
 .point{
-    width: 150px;
+    width: 50px;
     height: 40px;
     border: 2px solid #2e6f9a;
     border-radius: 8px;
     position: absolute;
     z-index: 25;
+    background: url('../../static/img/new/二进制文件阅读器.png') no-repeat 10px center;
 }
 
 .point.selected {

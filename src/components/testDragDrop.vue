@@ -1,7 +1,7 @@
 <template>
   <div :style="{ 'display': 'flex', 'justifyContent': 'stretch', 'marginTop': '50px', 'marginRight': '50px' }">
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
-				<Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayload1">            
+				<Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayload1">
 					<Draggable v-for="item in items1" :key="item.id">
 						<div class="draggable-item">
 							{{item.data}}
@@ -10,7 +10,7 @@
 				</Container>
 			</div>
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
-				<Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop('items2', $event)">            
+				<Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop('items2', $event)">
 					<Draggable v-for="item in items2" :key="item.id">
 						<div class="draggable-item">
 							{{item.data}}
@@ -52,3 +52,24 @@ export default {
   }
 };
 </script>
+<style>
+.smooth-dnd-container * {
+    box-sizing: border-box;
+}
+
+.draggable-item, .draggable-item-horizontal {
+    text-align: center;
+    display: block;
+    background-color: #fff;
+    outline: 0;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.draggable-item {
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+</style>
