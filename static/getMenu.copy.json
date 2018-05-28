@@ -143,6 +143,20 @@
                         "sref": "taskDevelop1",
                         "menuId": "20",
                         "text": "作业开发2"
+                    },
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "18",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.scheduler.testDD",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "testDragDrop",
+                        "menuId": "21",
+                        "text": "测试拖拽"
                     }
                 ],
                 "alert": "",

@@ -40,7 +40,8 @@ export const sidebar = {
             scheduler: {
                 SCHEDULER: "SCHEDULER",
                 JOBDEV: "JOBDEV",
-                JOBDEV1: "JOBDEV2"
+                JOBDEV1: "JOBDEV2",
+                testDD: 'testDD'
             },
             data: {
                 DATA: "DATA",

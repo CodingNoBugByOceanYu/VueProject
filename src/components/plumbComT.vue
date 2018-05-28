@@ -4,7 +4,7 @@
             <div class="node" id="node1"  @mouseover="showPannel1 = true" @mouseleave="showPannel1 = false">
                 <img src="../../static/img/new/读取器.png" class="top-arrow" title="读取器">
                 <div v-show="showPannel1" class="pannerlCss">
-                    <Container :behaviour="'copy'">
+                    <!-- <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayload">
                         <Draggable> 
                             <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
                                 <div class="Pleft">
@@ -15,7 +15,17 @@
                                 </div>
                             </div>
                         </Draggable>
-                    </Container>
+                    </Container> -->
+
+                   
+                    <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
+                        <div class="Pleft">
+                            <img :src=temp.img class="top-arrow">
+                        </div> 
+                        <div class="Pright">
+                            <p>{{temp.text}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = false">
@@ -82,11 +92,7 @@
             </div>
         </div>
         <div id="diagramContainer" class="map">
-            <Container @drop="onDrop()">
-                <Draggable v-for="item in items" :key="item.id" class="point">
-                    <div> {{item.text}} </div>
-                </Draggable>
-            </Container>
+
             <dl class="process-operation">
                 <dd>
                     <span class="process-cancle first" @click="deleteSelected()">撤销</span>
@@ -128,8 +134,9 @@
 
 <script>
     import $ from 'jquery'
-    import { Container, Draggable } from "vue-smooth-dnd";
-    import { applyDrag, generateItems } from "./utils";
+
+    // import { Container, Draggable } from "vue-smooth-dnd";
+    // import { applyDrag, generateItems } from "./utils";
 
     const color = '#acd';
 
@@ -141,9 +148,14 @@
             $.getJSON('../static/toolbar.json', function(json) {
                 var res = json.toolbar;
                 _this.toolBar = res;
+                console.log(_this.toolBar.first);
+
+                $('.Prow').draggable();
             });
+
+
         },
-        components: { Container, Draggable },
+        // components: { Container, Draggable },
         data: function () {
             return {
                 showPannel1: false,
@@ -158,7 +170,8 @@
                 instance: {},
                 allInfos: [],
                 toolBar: [],
-                items: []
+                dragItems: [],
+                dropItems: []
             }
         },
         mounted(){
@@ -182,7 +195,6 @@
                         _this.deleteOther();
 
                         $(e.target).addClass('selected');
-
                     });
                 }
             },
@@ -230,9 +242,26 @@
             }
         },
         methods: {
-            onDrop: function(dropResult) {
-                this.items = applyDrag(this.items, dropResult);
+            test: function () {
+                this.$swal({
+                    title: "Oh SUCK!",
+                    text: "操作失败",
+                    icon: "error",
+                    button: "确定",
+                });
             },
+            // onDrop: function(dropResult) {
+            //     // console.log('dropResult', dropResult);
+            //     this.dropItems = applyDrag(this.dropItems, dropResult);
+            // },
+            // getChildPayload: function(index) {
+            //     console.log('this.toolBar.first', index);
+            //     return this.toolBar.first[index];
+            // },
+            // getChildPayload2: function(index) {
+            //     console.log('this.dropItems', index);
+            //     return this.dropItems[index];
+            // },
             deleteOther() {
                 if (this.top > 0) {
                     for(var i = 0; i <= this.top; i++) {
@@ -292,14 +321,14 @@
             },
             addFirst() {
                 this.bottom++;
-    console.log(2112);
+
                 var id = 'top' + this.bottom,
                     template = `
                     <div id=` + id +` class='point'> 开始 </div>
                 `;
                 $('.map').append(template);
-                $('#'+ id).css('margin-left', 80 + this.both * 40);
-                $('#'+ id).css('margin-top', 50 + this.both * 20);
+                $('#'+ id).css('left', 80 + this.both * 40);
+                $('#'+ id).css('top', 50 + this.both * 20);
 
                 this.allInfos.push($('#' + id)); 
             },
@@ -311,8 +340,8 @@
                 `;
                 $('.map').append(template);
                                 
-                $('#'+ id).css('margin-left', 80 + this.both * 20);
-                $('#'+ id).css('margin-top', 100 + this.both * 20);
+                $('#'+ id).css('left', 80 + this.both * 20);
+                $('#'+ id).css('top', 100 + this.both * 20);
 
                 this.allInfos.push($('#' + id)); 
             },
@@ -331,8 +360,8 @@
                 `;
                 $('.map').append(template);
                 
-                $('#'+ id).css('margin-left', 100 + this.top * 20);
-                $('#'+ id).css('margin-top', 200 + this.top * 20);
+                $('#'+ id).css('left', 100 + this.top * 20);
+                $('#'+ id).css('top', 200 + this.top * 20);
 
                 this.allInfos.push($('#' + id));
             },
@@ -352,6 +381,12 @@
     }
 </script> 
 <style scope>
+
+.testArea {
+    height: 800px;
+    width: 100%;
+}
+
 #diagramContainer {
     overflow-y: auto;
 }
@@ -373,7 +408,7 @@
 }
 
 .save {
-    margin-top: 6%;
+    margin-top: -40%;
     overflow-y: auto;
     right: 0px;
     width: 240px;
@@ -522,13 +557,12 @@
 }
 
 .point{
-    width: 55px;
+    width: 150px;
     height: 40px;
     border: 2px solid #2e6f9a;
     border-radius: 8px;
-    position:absolute;
+    position: absolute;
     z-index: 25;
-    background: url('../../static/img/new/二进制文件阅读器.png') no-repeat 10px center;
 }
 
 .point.selected {

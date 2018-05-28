@@ -41,7 +41,8 @@ export const sidebar = {
             scheduler: {
                 SCHEDULER: "调度管理",
                 JOBDEV: "作业开发1",
-                JOBDEV1: "作业开发2"
+                JOBDEV1: "作业开发2",
+                testDD: '测试拖拽'
             },
             data: {
                 DATA: "数据管理",

@@ -6,6 +6,7 @@ import resourceM from '@/components/resourceM'
 import plumbComp from '@/components/plumbComP'
 import plumbComT from '@/components/plumbComT'
 import plumbComS from '@/components/plumbComS'
+import testDragDrop from '@/components/testDragDrop'
 
 export default [
     {
@@ -48,4 +49,9 @@ export default [
         title: '作业开发2',
         component: plumbComS
     },
+    {
+        name: 'testDragDrop',
+        title: '测试拖拽',
+        component: testDragDrop
+    }
 ]
