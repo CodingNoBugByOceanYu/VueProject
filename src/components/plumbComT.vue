@@ -4,20 +4,6 @@
             <div class="node" id="node1"  @mouseover="showPannel1 = true" @mouseleave="showPannel1 = false">
                 <img src="../../static/img/new/读取器.png" class="top-arrow" title="读取器">
                 <div v-show="showPannel1" class="pannerlCss">
-                    <!-- <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayload">
-                        <Draggable> 
-                            <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
-                                <div class="Pleft">
-                                    <img :src=temp.img class="top-arrow">
-                                </div> 
-                                <div class="Pright">
-                                    <p>{{temp.text}}</p>
-                                </div>
-                            </div>
-                        </Draggable>
-                    </Container> -->
-
-                   
                     <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
                         <div class="Pleft">
                             <img :src=temp.img class="top-arrow">
@@ -134,9 +120,7 @@
 
 <script>
     import $ from 'jquery'
-
-    // import { Container, Draggable } from "vue-smooth-dnd";
-    // import { applyDrag, generateItems } from "./utils";
+    import "jquery-ui";
 
     const color = '#acd';
 
@@ -155,7 +139,6 @@
 
 
         },
-        // components: { Container, Draggable },
         data: function () {
             return {
                 showPannel1: false,
@@ -250,18 +233,6 @@
                     button: "确定",
                 });
             },
-            // onDrop: function(dropResult) {
-            //     // console.log('dropResult', dropResult);
-            //     this.dropItems = applyDrag(this.dropItems, dropResult);
-            // },
-            // getChildPayload: function(index) {
-            //     console.log('this.toolBar.first', index);
-            //     return this.toolBar.first[index];
-            // },
-            // getChildPayload2: function(index) {
-            //     console.log('this.dropItems', index);
-            //     return this.dropItems[index];
-            // },
             deleteOther() {
                 if (this.top > 0) {
                     for(var i = 0; i <= this.top; i++) {
