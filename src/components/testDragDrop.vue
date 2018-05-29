@@ -11,10 +11,8 @@
 			</div>
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
 				<Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop('items2', $event)">
-					<div v-for="item in items2" :key="item.id">
-						<div class="point" v-drag>
+					<div v-for="item in items2" :key="item.id" class="point" v-drag>
 							{{item.data}}
-						</div>
 					</div>
 				</Container>
 			</div>

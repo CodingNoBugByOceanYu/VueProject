@@ -4,14 +4,18 @@
             <div class="node" id="node1"  @mouseover="showPannel1 = true" @mouseleave="showPannel1 = false">
                 <img src="../../static/img/new/Reader.png" class="top-arrow" title="读取器">
                 <div v-show="showPannel1" class="pannerlCss">
-                    <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
-                        <div class="Pleft">
-                            <img :src=temp.img class="top-arrow">
-                        </div> 
-                        <div class="Pright">
-                            <p>{{temp.text}}</p>
-                        </div>
-                    </div>
+                    <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayload">
+                        <Draggable> 
+                            <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
+                                <div class="Pleft">
+                                    <img :src=temp.img class="top-arrow">
+                                </div> 
+                                <div class="Pright">
+                                    <p>{{temp.text}}</p>
+                                </div>
+                            </div>
+                        </Draggable>
+                    </Container>
                 </div>
             </div>
             <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = false">
@@ -78,6 +82,14 @@
             </div>
         </div>
         <div id="diagramContainer" class="map">
+            <Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop($event)">
+                <div v-for="item in dropItems" :key="item.id" class="point" v-drag>
+                    <div>
+                        <img :src=item.img class="top-arrow">
+                        {{item.text}}
+                    </div>
+                </div>
+            </Container>
 
             <dl class="process-operation">
                 <dd>
@@ -120,6 +132,9 @@
 
 <script>
     import $ from 'jquery'
+    
+    import { Container, Draggable } from "vue-smooth-dnd";
+    import { applyDrag, generateItems } from "./utils";
 
     const color = '#acd';
 
@@ -133,6 +148,7 @@
                 _this.toolBar = res;
             });
         },
+        components: { Container, Draggable },
         data: function () {
             return {
                 showPannel1: false,
@@ -147,7 +163,6 @@
                 instance: {},
                 allInfos: [],
                 toolBar: [],
-                dragItems: [],
                 dropItems: []
             }
         },
@@ -219,13 +234,14 @@
             }
         },
         methods: {
-            test: function () {
-                this.$swal({
-                    title: "Oh SUCK!",
-                    text: "操作失败",
-                    icon: "error",
-                    button: "确定",
-                });
+            onDrop: function(dropResult) {
+                this.dropItems = applyDrag(this.dropItems, dropResult);
+            },
+            getChildPayload: function(index) {
+                return this.toolBar.first[index];
+            },
+            getChildPayload2: function(index) {
+                return this.dropItems[index];
             },
             deleteOther() {
                 if (this.top > 0) {
