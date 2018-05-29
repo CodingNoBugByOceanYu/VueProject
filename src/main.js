@@ -36,6 +36,10 @@ Vue.component('icon', Icon)
 import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 
+//拖拽
+import vueDragDrag from 'vue-dragdrag'
+Vue.use(vueDragDrag)
+
 const vueTaber = new VueTaber({
   tabs
 })
