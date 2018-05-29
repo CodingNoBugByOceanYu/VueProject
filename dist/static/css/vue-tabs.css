@@ -30,7 +30,7 @@
 }
 .tabs-list > li {
   float: left;
-  padding: 6px 18px;
+  padding: 6px 30px;
   position: relative;
   color: #999;
 }
@@ -59,7 +59,7 @@
   bottom: 0px;
   width: 100%;
   height: 2px;
-  background-color: #1ab394;
+  background-color: #0184ce;
   left: 0px;
 }
 .tabs-list > li.active .btn-close {

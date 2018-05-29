@@ -23,11 +23,41 @@
                         "sort": 1,
                         "params": "",
                         "translate": "sidebar.nav.menu.sysmanage.USER",
-                        "submenu": [],
+                        "submenu": [
+                            {
+                                "heading": false,
+                                "icon": "",
+                                "menuPid": "6",
+                                "label": "",
+                                "sort": 1,
+                                "params": "",
+                                "translate": "sidebar.nav.menu.sysmanage.res",
+                                "submenu": [
+                                    {
+                                        "heading": false,
+                                        "icon": "",
+                                        "menuPid": "99",
+                                        "label": "",
+                                        "sort": 1,
+                                        "params": "",
+                                        "translate": "sidebar.nav.menu.sysmanage.process1",
+                                        "submenu": [],
+                                        "alert": "",
+                                        "sref": "resRef",
+                                        "menuId": "100",
+                                        "text": "流程图名称"
+                                    }
+                                ],
+                                "alert": "",
+                                "sref": "resRef",
+                                "menuId": "99",
+                                "text": "资源名称"
+                            }
+                        ],
                         "alert": "",
                         "sref": "userManage",
                         "menuId": "6",
-                        "text": "用户管理"
+                        "text": "系统名称1"
                     },
                     {
                         "heading": false,
@@ -41,7 +71,7 @@
                         "alert": "",
                         "sref": "roleManage",
                         "menuId": "7",
-                        "text": "角色管理"
+                        "text": "系统名称2"
                     }],
                 "alert": "",
                 "sref": "#",
@@ -99,6 +129,34 @@
                         "sref": "taskDevelop",
                         "menuId": "19",
                         "text": "作业开发"
+                    },
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "18",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.scheduler.JOBDEV1",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "taskDevelop1",
+                        "menuId": "20",
+                        "text": "作业开发2"
+                    },
+                    {
+                        "heading": false,
+                        "icon": "",
+                        "menuPid": "18",
+                        "label": "",
+                        "sort": 1,
+                        "params": "",
+                        "translate": "sidebar.nav.menu.scheduler.testDD",
+                        "submenu": [],
+                        "alert": "",
+                        "sref": "testDragDrop",
+                        "menuId": "21",
+                        "text": "测试拖拽"
                     }
                 ],
                 "alert": "",
@@ -122,25 +180,11 @@
                         "label": "",
                         "sort": 1,
                         "params": "",
-                        "translate": "sidebar.nav.menu.data.DATASYNCEXEC",
+                        "translate": "sidebar.nav.menu.data.TESTCOMPONENT",
                         "submenu": [],
                         "alert": "",
-                        "sref": "dataSyncExec",
-                        "menuId": "44",
-                        "text": "同步日志"
-                    },
-                    {
-                        "heading": false,
-                        "icon": "",
-                        "menuPid": "41",
-                        "label": "",
-                        "sort": 1,
-                        "params": "",
-                        "translate": "sidebar.nav.menu.data.DATASYNCEXEC",
-                        "submenu": [],
-                        "alert": "",
-                        "sref": "testComponent",
-                        "menuId": "45",
+                        "sref": "Jsplumb",
+                        "menuId": "46",
                         "text": "测试组件"
                     }
                 ],

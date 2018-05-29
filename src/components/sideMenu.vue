@@ -18,37 +18,37 @@
                         <dt @click="toggleSubmenu(menu, tm.menus)" class="js_nav_1 fullWidth">
                             <p class="fl" style="width: 80px;"> {{$t(menu.translate)}}</p>
                             <div class="fl" style="margin-left: 35px;">
-                                <a title="修改" ><img src="../../static/img/new/修改.png"/></a>
-                                <a title="删除" ><img src="../../static/img/new/删除.png"/></a>
-                                <a title="新增系统" ><img src="../../static/img/new/新增系统.png"/></a>
+                                <a title="修改" ><img src="../../static/img/new/modify.png"/></a>
+                                <a title="删除" ><img src="../../static/img/new/delete.png"/></a>
+                                <a title="新增系统" ><img src="../../static/img/new/NewSystem.png"/></a>
                             </div>
                         </dt>
                         <div v-show="menu.show" :class="{'active': selected === submenu.menuId}" v-for="submenu in menu.submenu"  :key='submenu.menuId' @click.stop="clickMenuItem(submenu, menu.submenu)">
                             <div class="fullWidth son">
                                 <p class="fl sonL ml20"> {{$t(submenu.translate)}}</p>
                                 <div class="fr sonR">
-                                    <a class='fl' title="关联" ><img src="../../static/img/new/关联.png"/></a>
-                                    <a class='fl' title="新增资源" ><img src="../../static/img/new/新增资源2.png"/></a>
-                                    <a class='fl' title="更多" ><img src="../../static/img/new/更多.png"/></a>
+                                    <a class='fl' title="关联" ><img src="../../static/img/new/relate.png"/></a>
+                                    <a class='fl' title="新增资源" ><img src="../../static/img/new/NewResource2.png"/></a>
+                                    <a class='fl' title="更多" ><img src="../../static/img/new/more.png"/></a>
                                 </div>
                             </div>
                             <div class="ml20" v-show="submenu.show" v-for="sub in submenu.submenu"  :key='sub.menuId' @click.stop="clickMenuItem(sub, submenu.submenu)">
                                 <div class="fullWidth son">
                                     <p class="fl sonL ml10"> {{$t(sub.translate)}}</p>
                                     <div class="fr sonR" style="width: 44%;">
-                                        <a class='fl' title="关联" ><img src="../../static/img/new/操作映射.png"/></a>
-                                        <a class='fl' title="新增资源" ><img src="../../static/img/new/反序列化器.png"/></a>
+                                        <a class='fl' title="关联" ><img src="../../static/img/new/mapping.png"/></a>
+                                        <a class='fl' title="新增资源" ><img src="../../static/img/new/Deserializer.png"/></a>
                                         <a class='fl' title="更多" @mouseover="testShow = true" >
-                                            <img src="../../static/img/new/更多.png"/>
+                                            <img src="../../static/img/new/more.png"/>
                                             <img src="../../static/img/top-arrow.png" class="top-arrow" v-show="testShow" style="z-index=100;margin-left:-20px;">
                                         </a>
                                         <div class="secondOpt" v-show="testShow" @mouseleave="testShow = false" >
-                                            <a class='fl' title="修改" @click="editOS()"><img src="../../static/img/new/修改.png"/></a>
-                                            <a class='fl' title="删除" ><img src="../../static/img/new/删除.png"/></a>
-                                            <a class='fl' title="检出" ><img src="../../static/img/new/检出.png"/></a>
-                                            <a class='fl' title="全链分析" ><img src="../../static/img/new/全链分析.png"/></a>
-                                            <a class='fl' title="血缘分析" ><img src="../../static/img/new/血缘分析.png"/></a>
-                                            <a class='fl' title="影响分析" ><img src="../../static/img/new/影响分析.png"/></a>
+                                            <a class='fl' title="修改" @click="editOS()"><img src="../../static/img/new/modify.png"/></a>
+                                            <a class='fl' title="删除" ><img src="../../static/img/new/delete.png"/></a>
+                                            <a class='fl' title="检出" ><img src="../../static/img/new/checkOut.png"/></a>
+                                            <a class='fl' title="全链分析" ><img src="../../static/img/new/FullChainAnalysis.png"/></a>
+                                            <a class='fl' title="血缘分析" ><img src="../../static/img/new/BloodAnalysis.png"/></a>
+                                            <a class='fl' title="影响分析" ><img src="../../static/img/new/ImpactAnalysis.png"/></a>
                                         </div>
                                     </div>
                                 </div>
@@ -56,16 +56,16 @@
                                     <div>
                                         <p class="fl sonL ml5"> {{$t(s.translate)}}</p>
                                         <div class="fr sonR" style="width: 42%;">
-                                            <a class='fl' title="发布" ><img src="../../static/img/new/发布-(2).png"/></a>
+                                            <a class='fl' title="发布" ><img src="../../static/img/new/release2.png"/></a>
                                             <a class='fl' title="更多" @mouseover="testShow1 = true" >
-                                                <img src="../../static/img/new/更多.png"/>
+                                                <img src="../../static/img/new/more.png"/>
                                                 <img src="../../static/img/top-arrow.png" class="top-arrow" v-show="testShow1" style="z-index=100;margin-left:-20px;">
                                             </a>
                                             <div v-show="testShow1" class="secondOpt" style="margin-left: -3px;" @mouseleave="testShow1 = false">
-                                                <a class='fl' title="修改" @click="editOS()"><img src="../../static/img/new/修改.png"/></a>
-                                                <a class='fl' title="删除" ><img src="../../static/img/new/删除.png"/></a>
-                                                <a class='fl' title="检出" ><img src="../../static/img/new/检出.png"/></a>
-                                                <a class='fl' title="回退历史版本" ><img src="../../static/img/new/回退历史版本.png"/></a>
+                                                <a class='fl' title="修改" @click="editOS()"><img src="../../static/img/new/modify.png"/></a>
+                                                <a class='fl' title="删除" ><img src="../../static/img/new/delete.png"/></a>
+                                                <a class='fl' title="检出" ><img src="../../static/img/new/checkOut.png"/></a>
+                                                <a class='fl' title="回退历史版本" ><img src="../../static/img/new/backHis.png"/></a>
                                             </div>
                                         </div>
                                     </div>

@@ -2,7 +2,7 @@
     <div>
         <div class="drag-box">
             <div class="node" id="node1"  @mouseover="showPannel1 = true" @mouseleave="showPannel1 = false">
-                <img src="../../static/img/new/读取器.png" class="top-arrow" title="读取器">
+                <img src="../../static/img/new/Reader.png" class="top-arrow" title="读取器">
                 <div v-show="showPannel1" class="pannerlCss">
                     <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
                         <div class="Pleft">
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = false">
-                <img src="../../static/img/new/-处理器-.png" class="top-arrow" title="处理器">
+                <img src="../../static/img/new/processor.png" class="top-arrow" title="处理器">
                 <div v-show="showPannel2" class="pannerlCss">
                     <div class="LRow" v-for="temp in toolBar.second" :key="temp.groupId">
                         <div class="Lf"  @click="addSecond()">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="node" id="node3" @mouseover="showPannel3 = true" @mouseleave="showPannel3 = false">
-                <img src="../../static/img/new/写入器2.png" class="top-arrow" title="写入器">
+                <img src="../../static/img/new/Writer2.png" class="top-arrow" title="写入器">
                 <div v-show="showPannel3" class="pannerlCss">
                     <div class="Prow"  @click="addThird()" v-for="temp in toolBar.third" :key="temp.id"> 
                         <div class="Pleft">
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="node" id="node4"  @mouseover="showPannel4 = true" @mouseleave="showPannel4 = false">
-                <img src="../../static/img/new/服务.png" class="top-arrow" title="服务">
+                <img src="../../static/img/new/service.png" class="top-arrow" title="服务">
                 <div v-show="showPannel4" class="pannerlCss"> 
                     <div class="Prow"  @click="addFourth()" v-for="temp in toolBar.fourth" :key="temp.id"> 
                         <div class="Pleft">
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="node" id="node5" @mouseover="showPannel5 = true" @mouseleave="showPannel5 = false">
-                <img src="../../static/img/new/控制.png" class="top-arrow" title="控制">
+                <img src="../../static/img/new/control.png" class="top-arrow" title="控制">
                 <div v-show="showPannel5" class="pannerlCss"> 
                     <div class="Prow"  @click="addFifth()" v-for="temp in toolBar.fifth" :key="temp.id"> 
                         <div class="Pleft">
@@ -448,13 +448,13 @@
 }
 
 .process-operation dd span.process-cancle {
-    background: url('../../static/img/new/形状-10-拷贝.png') no-repeat 10px center;
+    background: url('../../static/img/new/Shape-3.png') no-repeat 10px center;
 }
 .process-operation dd span.process-checkIn {
-    background: url('../../static/img/new/形状-2.png') no-repeat 10px center;
+    background: url('../../static/img/new/Shape-2.png') no-repeat 10px center;
 }
 .process-operation dd span.process-test {
-    background: url('../../static/img/new/测试-(1).png') no-repeat 10px center;
+    background: url('../../static/img/new/test1.png') no-repeat 10px center;
 }
 
 .releaseArea {
@@ -469,7 +469,7 @@
     height: 36px;
     width: 19px;
     margin-left: 7px;
-    background-image:url('../../static/img/new/发布-(2).png');
+    background-image:url('../../static/img/new/release2.png');
     background-repeat: no-repeat;
     background-position:50% 50%;
 }
@@ -534,7 +534,7 @@
     border-radius: 8px;
     position: absolute;
     z-index: 25;
-    background: url('../../static/img/new/二进制文件阅读器.png') no-repeat 10px center;
+    background: url('../../static/img/new/BinaryFileReader.png') no-repeat 10px center;
 }
 
 .point.selected {

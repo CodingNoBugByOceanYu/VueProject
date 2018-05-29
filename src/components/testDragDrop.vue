@@ -11,32 +11,35 @@
 			</div>
 			<div :style="{'marginLeft': '50px', 'flex': '1'}">
 				<Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop('items2', $event)">
-					<Draggable v-for="item in items2" :key="item.id">
-						<div class="draggable-item">
+					<div v-for="item in items2" :key="item.id">
+						<div class="point" v-drag>
 							{{item.data}}
 						</div>
-					</Draggable>
+					</div>
 				</Container>
 			</div>
   </div>
 </template>
 
 <script>
+
 import { Container, Draggable } from "vue-smooth-dnd";
 import { applyDrag, generateItems } from "./utils";
+
 export default {
   name: "Copy",
   components: { Container, Draggable },
+
   data: function() {
     return {
       items1: generateItems(15, i => ({
         id: "1" + i,
         data: `Source Draggable - ${i}`
       })),
-      items2: generateItems(15, i => ({
-        id: "2" + i,
-        data: `Draggable 2 - ${i}`
-      }))
+      items2: [{
+        id: "2",
+        data: `54st`
+      }]
     };
   },
   methods: {
@@ -71,5 +74,15 @@ export default {
     width: 100%;
     margin-bottom: 2px;
     margin-top: 2px;
+}
+
+.point{
+    width: 50px;
+    height: 40px;
+    border: 2px solid #2e6f9a;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 25;
+    background: url('../../static/img/new/BinaryFileReader.png') no-repeat 10px center;
 }
 </style>
