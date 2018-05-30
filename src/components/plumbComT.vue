@@ -5,14 +5,12 @@
                 <img src="../../static/img/new/Reader.png" class="top-arrow" title="读取器">
                 <div v-show="showPannel1" class="pannerlCss">
                     <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayload">
-                        <Draggable> 
-                            <div class="Prow" @click="addFirst()" v-for="temp in toolBar.first" :key="temp.id">
-                                <div class="Pleft">
-                                    <img :src=temp.img class="top-arrow">
-                                </div> 
-                                <div class="Pright">
-                                    <p>{{temp.text}}</p>
-                                </div>
+                        <Draggable class="Prow" v-for="temp in toolBar.first" :key="temp.id">
+                            <div class="Pleft">
+                                <img :src=temp.img class="top-arrow">
+                            </div> 
+                            <div class="Pright">
+                                <p>{{temp.text}}</p>
                             </div>
                         </Draggable>
                     </Container>
@@ -82,11 +80,11 @@
             </div>
         </div>
         <div id="diagramContainer" class="map">
-            <Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop($event)">
-                <div v-for="item in dropItems" :key="item.id" class="point" v-drag>
+            <Container :group-name="'1'" :get-child-payload="getChildPayload2" @drop="onDrop($event)" class="testArea">
+                <div v-for="item in dropItems" :key="item.id" class="point" :id=item.id>
                     <div>
                         <img :src=item.img class="top-arrow">
-                        {{item.text}}
+                        <p>{{item.text}}</p>
                     </div>
                 </div>
             </Container>
@@ -137,6 +135,25 @@
     import { applyDrag, generateItems } from "./utils";
 
     const color = '#acd';
+    var  position = {};
+
+    document.onmouseup = mouseup ;
+
+    function mouseup(ev){
+        ev = ev || window.event;
+        position = mousePosition(ev);
+    }
+
+
+    function mousePosition(ev){
+        if(ev.pageX || ev.pageY){
+            return {x:ev.pageX, y:ev.pageY};
+        }
+        return {
+            x:ev.clientX + document.body.scrollLeft - document.body.clientLeft,
+            y:ev.clientY + document.body.scrollTop  - document.body.clientTop
+        };
+    }
 
     export default {
         name: 'plumbComp',
@@ -236,6 +253,20 @@
         methods: {
             onDrop: function(dropResult) {
                 this.dropItems = applyDrag(this.dropItems, dropResult);
+                // 获取鼠标位置赋值给要生成节点
+                setTimeout(() => {
+                    console.log('鼠标位置:', position);
+                    $('#'+ dropResult.payload.id).css('top', position.y - 100);
+                    $('#'+ dropResult.payload.id).css('left', position.x - 150);
+                    var jspb = this.instance,
+                        endpointBottom = { isSource:true},
+                        pointId = dropResult.payload.id;
+
+                    jspb.draggable($('.point'));
+
+                    this.instance.addEndpoint(pointId, { anchor:"Right", enabled: true}, endpointBottom );
+                }, 20);
+
             },
             getChildPayload: function(index) {
                 return this.toolBar.first[index];
@@ -544,13 +575,17 @@
 }
 
 .point{
-    width: 50px;
-    height: 40px;
+    width: 180px;
+    height: 85px;
     border: 2px solid #2e6f9a;
     border-radius: 8px;
     position: absolute;
     z-index: 25;
-    background: url('../../static/img/new/BinaryFileReader.png') no-repeat 10px center;
+}
+
+.point img{
+    display: block;
+    margin: 0 auto;
 }
 
 .point.selected {
