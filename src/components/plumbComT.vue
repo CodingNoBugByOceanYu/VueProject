@@ -4,7 +4,7 @@
             <div class="node" id="node1"  @mouseover="showPannel1 = true" @mouseleave="showPannel1 = false">
                 <img src="../../static/img/new/Reader.png" class="top-arrow" title="读取器">
                 <div v-show="showPannel1" class="pannerlCss">
-                    <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayload">
+                    <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayloadFirst">
                         <Draggable class="Prow" v-for="temp in toolBar.first" :key="temp.id">
                             <div class="Pleft">
                                 <img :src=temp.img class="top-arrow">
@@ -20,7 +20,7 @@
                 <img src="../../static/img/new/processor.png" class="top-arrow" title="处理器">
                 <div v-show="showPannel2" class="pannerlCss">
                     <div class="LRow" v-for="temp in toolBar.second" :key="temp.groupId">
-                        <div class="Lf"  @click="addSecond()">
+                        <div class="Lf">
                             <div class="Pleft">
                                 <img :src=temp.left.img class="top-arrow">
                             </div> 
@@ -42,40 +42,48 @@
             <div class="node" id="node3" @mouseover="showPannel3 = true" @mouseleave="showPannel3 = false">
                 <img src="../../static/img/new/Writer2.png" class="top-arrow" title="写入器">
                 <div v-show="showPannel3" class="pannerlCss">
-                    <div class="Prow"  @click="addThird()" v-for="temp in toolBar.third" :key="temp.id"> 
-                        <div class="Pleft">
-                            <img :src=temp.img class="top-arrow">
-                        </div> 
-                        <div class="Pright">
-                            <p>{{temp.text}}</p>
-                        </div>
-                    </div>
+
+                    <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayloadThird">
+                        <Draggable class="Prow" v-for="temp in toolBar.third" :key="temp.id">
+                            <div class="Pleft">
+                                <img :src=temp.img class="top-arrow">
+                            </div> 
+                            <div class="Pright">
+                                <p>{{temp.text}}</p>
+                            </div>
+                        </Draggable>
+                    </Container>
                 </div>
             </div>
             <div class="node" id="node4"  @mouseover="showPannel4 = true" @mouseleave="showPannel4 = false">
                 <img src="../../static/img/new/service.png" class="top-arrow" title="服务">
                 <div v-show="showPannel4" class="pannerlCss"> 
-                    <div class="Prow"  @click="addFourth()" v-for="temp in toolBar.fourth" :key="temp.id"> 
-                        <div class="Pleft">
-                            <img :src=temp.img class="top-arrow">
-                        </div> 
-                        <div class="Pright">
-                            <p>{{temp.text}}</p>
-                        </div>
-                    </div>
+                   
+                    <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayloadFourth">
+                        <Draggable class="Prow" v-for="temp in toolBar.fourth" :key="temp.id">
+                            <div class="Pleft">
+                                <img :src=temp.img class="top-arrow">
+                            </div> 
+                            <div class="Pright">
+                                <p>{{temp.text}}</p>
+                            </div>
+                        </Draggable>
+                    </Container>
                 </div>
             </div>
             <div class="node" id="node5" @mouseover="showPannel5 = true" @mouseleave="showPannel5 = false">
                 <img src="../../static/img/new/control.png" class="top-arrow" title="控制">
                 <div v-show="showPannel5" class="pannerlCss"> 
-                    <div class="Prow"  @click="addFifth()" v-for="temp in toolBar.fifth" :key="temp.id"> 
-                        <div class="Pleft">
-                            <img :src=temp.img class="top-arrow">
-                        </div> 
-                        <div class="Pright">
-                            <p>{{temp.text}}</p>
-                        </div>
-                    </div>
+                    <Container :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayloadFifth">
+                        <Draggable class="Prow" v-for="temp in toolBar.fifth" :key="temp.id">
+                            <div class="Pleft">
+                                <img :src=temp.img class="top-arrow">
+                            </div> 
+                            <div class="Pright">
+                                <p>{{temp.text}}</p>
+                            </div>
+                        </Draggable>
+                    </Container>
                 </div>
             </div>
         </div>
@@ -174,9 +182,6 @@
                 showPannel4: false,
                 showPannel5: false,
                 showRightPannel: false,
-                top: 0,
-                bottom: 0,
-                both: 0,
                 instance: {},
                 allInfos: [],
                 toolBar: [],
@@ -188,68 +193,6 @@
                 this.createFlow();
             });
         },
-        watch: {
-            top: function (val, oldVal) {
-                var _this = this,
-                    jspb = _this.instance;
-
-                if (val !== oldVal) {
-                    var endpointTop = { isTarget:true};
-
-                    jspb.addEndpoint('bottom' + _this.top, { anchor:"Left", enabled: true}, endpointTop );
-
-                    jspb.draggable($('.point'));
-
-                    $('#bottom' + _this.top).click(function (e) {
-                        _this.deleteOther();
-
-                        $(e.target).addClass('selected');
-                    });
-                }
-            },
-            bottom: function (val, oldVal) {
-                var _this = this,
-                    jspb = _this.instance;
-
-                if (val !== oldVal) {
-                    var endpointBottom = { isSource:true};
-
-                    jspb.addEndpoint('top' + _this.bottom, { anchor:"Right", enabled: true}, endpointBottom );
-
-                    jspb.draggable($('.point'));
-
-                    $('#top' + _this.bottom).click(function (e) {
-                        _this.deleteOther();
-
-                        $(e.target).addClass('selected');
-                    });
-                }
-            },
-            both: function (val, oldVal) {
-                var _this = this,
-                    jspb = _this.instance;
-
-                if (val !== oldVal) {
-                    var endpoint = {
-                        isTarget:true,
-                        isSource:true
-                    };
-
-                    jspb.addEndpoints('both' + _this.both, [{ anchor:"Left", enabled: true},
-                        { anchor:"Right", enabled: true}], endpoint );
-
-                    jspb.draggable($('.point'));
-
-                    $('#' + 'both' + _this.both).click(function (e) {
-                        _this.showRightPannel = !_this.showRightPannel;
-
-                        _this.deleteOther();
-
-                        $(e.target).addClass('selected');
-                    });
-                }
-            }
-        },
         methods: {
             onDrop: function(dropResult) {
                 this.dropItems = applyDrag(this.dropItems, dropResult);
@@ -259,37 +202,42 @@
                     $('#'+ dropResult.payload.id).css('top', position.y - 100);
                     $('#'+ dropResult.payload.id).css('left', position.x - 150);
                     var jspb = this.instance,
-                        endpointBottom = { isSource:true},
+                        endpoint = {
+                            isTarget:true,
+                            isSource:true
+                        },
                         pointId = dropResult.payload.id;
 
                     jspb.draggable($('.point'));
 
-                    this.instance.addEndpoint(pointId, { anchor:"Right", enabled: true}, endpointBottom );
+                    jspb.addEndpoints(pointId, [{ anchor:"Left", enabled: true},
+                        { anchor:"Right", enabled: true}], endpoint );
+
+                    $('#'+ dropResult.payload.id).click(function (e) {
+                        $('.point').removeClass('selected');
+
+                        $(e.target).addClass('selected');
+                    });
                 }, 20);
 
             },
-            getChildPayload: function(index) {
+            getChildPayloadFirst: function(index) {
                 return this.toolBar.first[index];
+            },
+            getChildPayloadSecond: function(index) {
+                return this.toolBar.second[index];
+            },
+            getChildPayloadThird: function(index) {
+                return this.toolBar.third[index];
+            },
+            getChildPayloadFourth: function(index) {
+                return this.toolBar.fourth[index];
+            },
+            getChildPayloadFifth: function(index) {
+                return this.toolBar.fifth[index];
             },
             getChildPayload2: function(index) {
                 return this.dropItems[index];
-            },
-            deleteOther() {
-                if (this.top > 0) {
-                    for(var i = 0; i <= this.top; i++) {
-                        $('#bottom' + i).removeClass('selected');
-                    };
-                }
-                if (this.bottom > 0) {
-                    for(var i = 0; i <= this.bottom; i++) {
-                        $('#top' + i).removeClass('selected');
-                    };
-                }
-                if (this.both > 0) {
-                    for(var i = 0; i <= this.both; i++) {
-                        $('#both' + i).removeClass('selected');
-                    };
-                }
             },
             createFlow() {
                 this.instance = jsPlumb.getInstance({
@@ -336,52 +284,6 @@
                 //     console.log('选中', conn);
                 //     _this.instance.deleteConnection(conn);
                 // });
-            },
-            addFirst() {
-                this.bottom++;
-
-                var id = 'top' + this.bottom,
-                    template = `
-                    <div id=` + id +` class='point'> 开始 </div>
-                `;
-                $('.map').append(template);
-                $('#'+ id).css('left', 80 + this.both * 40);
-                $('#'+ id).css('top', 50 + this.both * 20);
-
-                this.allInfos.push($('#' + id)); 
-            },
-            addSecond() {
-                this.both++;
-                var id = 'both' + this.both,
-                    template = `
-                    <div id=` + id +` class='point'> 过程 </div>
-                `;
-                $('.map').append(template);
-                                
-                $('#'+ id).css('left', 80 + this.both * 20);
-                $('#'+ id).css('top', 100 + this.both * 20);
-
-                this.allInfos.push($('#' + id)); 
-            },
-            addThird() {
-                this.addSecond();
-            },
-            addFourth() {
-                this.addSecond();
-            },
-            addFifth() {
-                this.top++;
-
-                var id = 'bottom' + this.top,
-                    template = `
-                    <div id=` + id +` class='point'> 结束 </div>
-                `;
-                $('.map').append(template);
-                
-                $('#'+ id).css('left', 100 + this.top * 20);
-                $('#'+ id).css('top', 200 + this.top * 20);
-
-                this.allInfos.push($('#' + id));
             },
             getAllConnection() {
                 var list = this.instance.getAllConnections();//获取所有的链接
