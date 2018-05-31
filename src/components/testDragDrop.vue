@@ -75,12 +75,11 @@ export default {
 }
 
 .point{
-    width: 50px;
-    height: 40px;
+    width: 180px;
+    height: 85px;
     border: 2px solid #2e6f9a;
     border-radius: 8px;
     position: absolute;
     z-index: 25;
-    background: url('../../static/img/new/BinaryFileReader.png') no-repeat 10px center;
 }
 </style>
