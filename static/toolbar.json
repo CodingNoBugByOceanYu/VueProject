@@ -42,203 +42,162 @@
                 "img": "../../static/img/new/XMLReader.png"
             }
         ],
-        "second": [
-            {
-                "left": {
+        "second": {
+            "left": [
+                {
                     "id": "10",
                     "text": "Assert断言",
                     "img": "../../static/img/new/Assert.png"
                 },
-                "right": {
-                    "id": "11",
-                    "text": "子流程嵌入",
-                    "img": "../../static/img/new/Sub-processEmbedding.png"
-                },
-                "groupId": "1"
-            },
-            {
-                "left": {
+                {
                     "id": "12",
                     "text": "内容路由器",
                     "img": "../../static/img/new/contentRouter.png"
                 },
-                "right": {
-                    "id": "13",
-                    "text": "重复数据去除",
-                    "img": "../../static/img/new/RepeatRemoval.png"
-                },
-                "groupId": "2"
-            },
-            {
-                "left": {
+                {
                     "id": "16",
                     "text": "延迟",
                     "img": "../../static/img/new/delay.png"
                 },
-                "right": {
-                    "id": "17",
-                    "text": "反序列化器",
-                    "img": "../../static/img/new/Deserializer.png"
-                },
-                "groupId": "3"
-            },
-            {
-                "left": {
+                {
                     "id": "18",
                     "text": "执行",
                     "img": "../../static/img/new/execute.png"
                 },
-                "right": {
-                    "id": "19",
-                    "text": "文件操作",
-                    "img": "../../static/img/new/FileOperation.png"
-                },
-                "groupId": "4"
-            },
-            {
-                "left": {
+                {
                     "id": "20",
                     "text": "分隔符格式化",
                     "img": "../../static/img/new/DelimiterFormat.png"
                 },
-                "right": {
-                    "id": "21",
-                    "text": "固定格式化",
-                    "img": "../../static/img/new/FixedFormat.png"
-                },
-                "groupId": "5"
-            },
-            {
-                "left": {
+                {
                     "id": "22",
                     "text": "XML文件格式化",
                     "img": "../../static/img/new/XMLParser.png"
                 },
-                "right": {
-                    "id": "23",
-                    "text": "检索",
-                    "img": "../../static/img/new/Retrieval.png"
-                },
-                "groupId": "6"
-            },
-            {
-                "left": {
+                {
                     "id": "24",
                     "text": "映射",
                     "img": "../../static/img/new/Map2.png"
                 },
-                "right": {
-                    "id": "25",
-                    "text": "合并",
-                    "img": "../../static/img/new/unit.png"
-                },
-                "groupId": "7"
-            },
-            {
-                "left": {
+                {
                     "id": "26",
                     "text": "消息日志记录器",
                     "img": "../../static/img/new/MessageSubscription.png"
                 },
-                "right": {
-                    "id": "27",
-                    "text": "数据模型比较器",
-                    "img": "../../static/img/new/DataCompressor.png"
-                },
-                "groupId": "8"
-            },
-            {
-                "left": {
+                {
                     "id": "28",
                     "text": "倍增器",
                     "img": "../../static/img/new/Multiplier.png"
                 },
-                "right": {
-                    "id": "29",
-                    "text": "无操作",
-                    "img": "../../static/img/new/NoOperation.png"
-                },
-                "groupId": "9"
-            },
-            {
-                "left": {
+                {
                     "id": "30",
                     "text": "格式化解析器",
                     "img": "../../static/img/new/FormatParser.png"
                 },
-                "right": {
-                    "id": "31",
-                    "text": "脚本",
-                    "img": "../../static/img/new/script.png"
-                },
-                "groupId": "10"
-            },
-            {
-                "left": {
+                {
                     "id": "32",
                     "text": "XML解析器",
                     "img": "../../static/img/new/XMLParser.png"
                 },
-                "right": {
-                    "id": "33",
-                    "text": "序列化",
-                    "img": "../../static/img/new/Serialization.png"
-                },
-                "groupId": "11"
-            },
-            {
-                "left": {
+                {
                     "id": "34",
                     "text": "排序器",
                     "img": "../../static/img/new/Sorter.png"
                 },
-                "right": {
-                    "id": "35",
-                    "text": "顺序化",
-                    "img": "../../static/img/new/Sequential.png"
-                },
-                "groupId": "12"
-            },
-            {
-                "left": {
+                {
                     "id": "36",
                     "text": "暂存RDBMS",
                     "img": "../../static/img/new/TempRDBMS.png"
                 },
-                "right": {
-                    "id": "37",
-                    "text": "文本替换",
-                    "img": "../../static/img/new/TextReplace.png"
-                },
-                "groupId": "13"
-            },
-            {
-                "left": {
+                {
                     "id": "38",
                     "text": "转换器",
                     "img": "../../static/img/new/zhq.png"
                 },
-                "right": {
-                    "id": "39",
-                    "text": "联合器",
-                    "img": "../../static/img/new/Jointer.png"
-                },
-                "groupId": "14"
-            },
-            {
-                "left": {
+                {
                     "id": "40",
                     "text": "web请求",
                     "img": "../../static/img/new/web.png"
+                }
+            ],
+            "right": [
+                {
+                    "id": "11",
+                    "text": "子流程嵌入",
+                    "img": "../../static/img/new/Sub-processEmbedding.png"
                 },
-                "right": {
+                {
+                    "id": "13",
+                    "text": "重复数据去除",
+                    "img": "../../static/img/new/RepeatRemoval.png"
+                },
+                {
+                    "id": "17",
+                    "text": "反序列化器",
+                    "img": "../../static/img/new/Deserializer.png"
+                },
+                {
+                    "id": "19",
+                    "text": "文件操作",
+                    "img": "../../static/img/new/FileOperation.png"
+                },
+                {
+                    "id": "21",
+                    "text": "固定格式化",
+                    "img": "../../static/img/new/FixedFormat.png"
+                },
+                {
+                    "id": "23",
+                    "text": "检索",
+                    "img": "../../static/img/new/Retrieval.png"
+                },
+                {
+                    "id": "25",
+                    "text": "合并",
+                    "img": "../../static/img/new/unit.png"
+                },
+                {
+                    "id": "27",
+                    "text": "数据模型比较器",
+                    "img": "../../static/img/new/DataCompressor.png"
+                },
+                {
+                    "id": "29",
+                    "text": "无操作",
+                    "img": "../../static/img/new/NoOperation.png"
+                },
+                {
+                    "id": "31",
+                    "text": "脚本",
+                    "img": "../../static/img/new/script.png"
+                },
+                {
+                    "id": "33",
+                    "text": "序列化",
+                    "img": "../../static/img/new/Serialization.png"
+                },
+                {
+                    "id": "35",
+                    "text": "顺序化",
+                    "img": "../../static/img/new/Sequential.png"
+                },
+                {
                     "id": "41",
                     "text": "XSLT处理器",
                     "img": "../../static/img/new/XSLTProcessor.png"
                 },
-                "groupId": "15"
-            }
-        ],
+                {
+                    "id": "39",
+                    "text": "联合器",
+                    "img": "../../static/img/new/Jointer.png"
+                },
+                {
+                    "id": "37",
+                    "text": "文本替换",
+                    "img": "../../static/img/new/TextReplace.png"
+                }
+            ]
+        },
         "third": [
             {
                 "id": "42",

@@ -19,23 +19,27 @@
             <div class="node" id="node2" @mouseover="showPannel2 = true" @mouseleave="showPannel2 = false">
                 <img src="../../static/img/new/processor.png" class="top-arrow" title="处理器">
                 <div v-show="showPannel2" class="pannerlCss">
-                    <div class="LRow" v-for="temp in toolBar.second" :key="temp.groupId">
-                        <div class="Lf">
-                            <div class="Pleft">
-                                <img :src=temp.left.img class="top-arrow">
-                            </div> 
-                            <div class="Pright">
-                                <p>{{temp.left.text}}</p>
-                            </div>
-                        </div>
-                        <div class="Lr">
-                            <div class="Pleft">
-                                <img :src=temp.right.img class="top-arrow">
-                            </div> 
-                            <div class="Pright">
-                                <p>{{temp.right.text}}</p>
-                            </div>
-                        </div>
+                    <div class="LRow" >
+                        <Container class="Lf" :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayloadSecondL">
+                            <Draggable class="Prow" v-for="temp in toolBar.second.left" :key="temp.id">
+                                <div class="Pleft">
+                                    <img :src=temp.img class="top-arrow">
+                                </div> 
+                                <div class="Pright">
+                                    <p>{{temp.text}}</p>
+                                </div>
+                            </Draggable>
+                        </Container>
+                        <Container class="Lr" :behaviour="'copy'" :group-name="'1'" :get-child-payload="getChildPayloadSecondR">
+                            <Draggable class="Prow" v-for="temp in toolBar.second.right" :key="temp.id">
+                                <div class="Pleft">
+                                    <img :src=temp.img class="top-arrow">
+                                </div> 
+                                <div class="Pright">
+                                    <p>{{temp.text}}</p>
+                                </div>
+                            </Draggable>
+                        </Container>
                     </div>
                 </div>
             </div>
@@ -165,12 +169,13 @@
 
     export default {
         name: 'plumbComp',
-        created() {
+        beforeCreate() {
             var _this = this;
 
             $.getJSON('../static/toolbar.json', function(json) {
                 var res = json.toolbar;
                 _this.toolBar = res;
+                console.log(_this.toolBar.second, '_this.toolBar');
             });
         },
         components: { Container, Draggable },
@@ -184,7 +189,16 @@
                 showRightPannel: false,
                 instance: {},
                 allInfos: [],
-                toolBar: [],
+                toolBar: {
+                    first: [],
+                    second: {
+                        left: [],
+                        right: []
+                    },
+                    third: [],
+                    fourth: [],
+                    fifth: []
+                },
                 dropItems: []
             }
         },
@@ -224,8 +238,11 @@
             getChildPayloadFirst: function(index) {
                 return this.toolBar.first[index];
             },
-            getChildPayloadSecond: function(index) {
-                return this.toolBar.second[index];
+            getChildPayloadSecondL: function(index) {
+                return this.toolBar.second.left[index];
+            },
+            getChildPayloadSecondR: function(index) {
+                return this.toolBar.second.right[index];
             },
             getChildPayloadThird: function(index) {
                 return this.toolBar.third[index];
@@ -454,22 +471,20 @@
 
 .LRow {
     width: 320px;
-    height: 55px;
+    height: auto;
+    min-height: 680px;
     line-height: 50px;
     background: white;
 }
-.Lf:hover, .Lr:hover {
-    cursor: pointer;
-    background: #f5f6fa;
-}
+
 .Lf {
-    width: 48%;
+    width: 50%;
     float: left;
 }
 .Lr {
     width: 46%;
-    float: left;
     margin-left: 10px;
+    float: left;
 }
 
 .Lf {
