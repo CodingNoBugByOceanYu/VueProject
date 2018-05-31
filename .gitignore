@@ -1,5 +1,6 @@
 ##ignore this file##
 node_modules/
+dist/
 
 .classpath
 .project
