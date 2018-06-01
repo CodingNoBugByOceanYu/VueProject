@@ -1,27 +1,29 @@
-export const applyDrag = (arr, dragResult) => {
-    console.log(arr, dragResult, 'util');
+export const applyDrag = function(arr, dragResult) {
 
-    const { removedIndex, addedIndex, payload } = dragResult
-    if (removedIndex === null && addedIndex === null) return arr
+    var i = 0,
+        itemToAdd = dragResult.payload;
 
-    const result = [...arr]
-    let itemToAdd = payload
 
-    if (removedIndex !== null) {
-        itemToAdd = result.splice(removedIndex, 1)[0]
+    if (arr.length === 0) {
+        arr.push(itemToAdd);
+    } else {
+        _.forEach(arr, function (item) {
+            if (item.id === itemToAdd.id) {
+                var obj = {
+                    id: itemToAdd.id + '_1',
+                    img: itemToAdd.img,
+                    text: itemToAdd.text
+                }
+                arr.push(obj);
+            } else {
+                i++;
+            }
+        });
+        if (i === arr.length) {
+            arr.push(itemToAdd);
+        }
     }
-
-    if (addedIndex !== null) {
-        // if (arr.length > 0) {
-        //     for (let i = 0; i < arr.length; i++) {
-        //         if (arr[i].id === itemToAdd.id) {
-        //             itemToAdd.id += '_1';
-        //         }
-        //     }
-        // }
-        result.splice(addedIndex, 0, itemToAdd)
-    }
-    return result
+    return arr;
 };
 
 export const generateItems = (count, creator) => {

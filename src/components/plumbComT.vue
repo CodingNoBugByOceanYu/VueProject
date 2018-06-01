@@ -144,7 +144,7 @@
     import $ from 'jquery'
     
     import { Container, Draggable } from "vue-smooth-dnd";
-    import { applyDrag, generateItems } from "./utils";
+    import { applyDrag } from "./utils";
 
     const color = '#acd';
     var  position = {};
@@ -175,7 +175,6 @@
             $.getJSON('../static/toolbar.json', function(json) {
                 var res = json.toolbar;
                 _this.toolBar = res;
-                console.log(_this.toolBar.second, '_this.toolBar');
             });
         },
         components: { Container, Draggable },
@@ -189,6 +188,7 @@
                 showRightPannel: false,
                 instance: {},
                 allInfos: [],
+                //左侧工具栏数据结构
                 toolBar: {
                     first: [],
                     second: {
@@ -210,24 +210,28 @@
         methods: {
             onDrop: function(dropResult) {
                 this.dropItems = applyDrag(this.dropItems, dropResult);
+                var nodes =  this.dropItems,
+                    NL = nodes.length,
+                    Lnode = nodes[NL - 1];
+
                 // 获取鼠标位置赋值给要生成节点
                 setTimeout(() => {
                     console.log('鼠标位置:', position);
-                    $('#'+ dropResult.payload.id).css('top', position.y - 100);
-                    $('#'+ dropResult.payload.id).css('left', position.x - 150);
+                    $('#'+ Lnode.id).css('top', position.y - 100);
+                    $('#'+ Lnode.id).css('left', position.x - 150);
                     var jspb = this.instance,
                         endpoint = {
                             isTarget:true,
                             isSource:true
                         },
-                        pointId = dropResult.payload.id;
+                        pointId = Lnode.id;
 
                     jspb.draggable($('.point'));
 
                     jspb.addEndpoints(pointId, [{ anchor:"Left", enabled: true},
                         { anchor:"Right", enabled: true}], endpoint );
 
-                    $('#'+ dropResult.payload.id).click(function (e) {
+                    $('#'+ Lnode.id).click(function (e) {
                         $('.point').removeClass('selected');
 
                         $(e.target).addClass('selected');
