@@ -199,7 +199,29 @@
                     fourth: [],
                     fifth: []
                 },
-                dropItems: []
+                dropItems: [],
+                //保存节点信息
+                InitDatas: { 
+                    point: [
+                        {
+                            id: "1",
+                            text: "二进制文件阅读器",
+                            img: "../../static/img/new/BinaryFileReader.png"
+                        },
+                        {
+                            id: "2",
+                            text: "excel读取器",
+                            img: "../../static/img/new/excelReader.png"
+                        }
+                    ],
+                    location: [
+                        ['1', 360, 140],
+                        ['2', 720, 340]
+                    ],
+                    line: [
+                        ['1', '2']
+                    ]
+                }
             }
         },
         mounted(){
@@ -210,13 +232,16 @@
         methods: {
             onDrop: function(dropResult) {
                 this.dropItems = applyDrag(this.dropItems, dropResult);
+
+                console.log('节点信息：', this.dropItems);
+
                 var nodes =  this.dropItems,
                     NL = nodes.length,
                     Lnode = nodes[NL - 1];
 
                 // 获取鼠标位置赋值给要生成节点
                 setTimeout(() => {
-                    console.log('鼠标位置:', position);
+                    console.log('位置信息:', position);
                     $('#'+ Lnode.id).css('top', position.y - 100);
                     $('#'+ Lnode.id).css('left', position.x - 150);
                     var jspb = this.instance,
@@ -261,6 +286,8 @@
                 return this.dropItems[index];
             },
             createFlow() {
+                var _this = this;
+
                 this.instance = jsPlumb.getInstance({
                     Connector: 'Flowchart',
                     Endpoint: 'Dot',
@@ -288,23 +315,75 @@
                             },
                             width: 12
                         }],
+                        ['Label', { label: '链接说明', id: 'label' }],
                     ],
                     Container: 'points'
                 });
-                
-                var _this = this;
 
-                this.instance.bind("connection",function(info){
-                    // console.log('连接信息', info);
-                    _this.allInfos.push(info); 
-                    // console.log(_this.allInfos);
+                //初始化保存节点信息
+                this.instance.batch(() => {
+                    // declare some common values:
+                    const arrowCommon = { foldback: 0.7, width: 12 };
+                    // use three-arg spec to create two different arrows with the common values:
+                    // const overlays = [
+                    // ['Arrow', { location: 0.7 }, arrowCommon],
+                    // ['Label', { label: '链接说明', id: 'label' }],
+                    // ];
+                    const InitDatas = this.InitDatas;
+                    // init point
+                    for (const point of InitDatas.point) {
+                        $('#diagramContainer').append(
+                            `<div id="${point.id}" class="point">
+                                <img src="${point.img}" class="top-arrow">
+                                <p>${point.text}</p>
+                            </div>`
+
+                        );
+                        _this.instance.addEndpoint(point.id, {
+                            uuid: `${point.id}-top`,
+                            anchor: 'Left',
+                            maxConnections: -1,
+                            connectorStyle: { stroke: 'gray' },
+                        }, {
+                            isSource: true,
+                            isTarget: true,
+                            dragAllowedWhenFull: true,
+                        });
+                        _this.instance.addEndpoint(point.id, {
+                            uuid: `${point.id}-bottom`,
+                            anchor: 'Right',
+                            maxConnections: -1,
+                            connectorStyle: { stroke: 'green' },
+                        }, {
+                            isSource: true,
+                            isTarget: true,
+                            dragAllowedWhenFull: true,
+                        });
+                    }
+
+                    // init transition
+                    for (const i of InitDatas.line) {
+                        const uuid = [`${i[0]}-bottom`, `${i[1]}-top`];
+                        _this.instance.connect({
+                            uuids: uuid
+                            // overlays,
+                        });
+                    }
+
+                    // init location
+                    for (const i of InitDatas.location) {
+                        $(`#${i[0]}`).css('left', i[1]);
+                        $(`#${i[0]}`).css('top', i[2]);
+                    }
+
+                    this.instance.draggable($('.point'));
+                    
                 });
 
-
-                // this.instance.bind("click", function (conn, originalEvent) {
-                //     console.log('选中', conn);
-                //     _this.instance.deleteConnection(conn);
-                // });
+                this.instance.bind("connection",function(info){
+                    console.log('连接信息：', info);
+                    _this.allInfos.push(info); 
+                });
             },
             getAllConnection() {
                 var list = this.instance.getAllConnections();//获取所有的链接

@@ -40,7 +40,6 @@ export default {
         location: [
           ['test1', 4, 14],
           ['test2', 4, 24],
-          ['end', 4, 34],
           ['end', 20, 24],
           ['start', 4, 4],
         ],
