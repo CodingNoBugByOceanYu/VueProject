@@ -107,7 +107,7 @@
                 </dd>
                 <dd><span class="process-checkIn" >检入</span></dd>
                 <dd><span class="process-test" >仿真测试</span></dd>
-                <dd><span class="process-save" >保存设计</span></dd>
+                <dd><span class="process-save" @click="getAllConnection()" >保存设计</span></dd>
             </dl>
             <div class="releaseArea">
                 <a class="process-release"></a>  
@@ -133,7 +133,7 @@
                     </div>
                 </div>
                 <div class="operaDiv">
-                    <button class="btn btn-green" @click="getAllConnection()"> 获取连接 </button>
+                    <button class="btn btn-green"> 获取连接 </button>
                 </div>
             </div>
         </div> 
@@ -233,15 +233,24 @@
             onDrop: function(dropResult) {
                 this.dropItems = applyDrag(this.dropItems, dropResult);
 
-                console.log('节点信息：', this.dropItems);
+                this.InitDatas.point.push(_.last(this.dropItems));
+                
 
                 var nodes =  this.dropItems,
-                    NL = nodes.length,
-                    Lnode = nodes[NL - 1];
+                    Lnode = _.last(nodes);
+
+                //撤销节点用的
+                this.allInfos.push(Lnode.id);
 
                 // 获取鼠标位置赋值给要生成节点
                 setTimeout(() => {
-                    console.log('位置信息:', position);
+                    console.log('位置信息:', );
+                    var tempArr = [];
+                    tempArr[0] = Lnode.id;
+                    tempArr[1] = position.x - 100;
+                    tempArr[2] = position.y - 150;
+                    this.InitDatas.location.push(tempArr);
+
                     $('#'+ Lnode.id).css('top', position.y - 100);
                     $('#'+ Lnode.id).css('left', position.x - 150);
                     var jspb = this.instance,
@@ -382,19 +391,49 @@
 
                 this.instance.bind("connection",function(info){
                     console.log('连接信息：', info);
-                    _this.allInfos.push(info); 
+                    //撤销连接用的
+                    _this.allInfos.push(info.connection);
+
+                    var tempArr1 = [];
+                    tempArr1[0] = info.sourceId;
+                    tempArr1[1] = info.targetId;
+                    _this.InitDatas.line.push(tempArr1);
                 });
             },
             getAllConnection() {
                 var list = this.instance.getAllConnections();//获取所有的链接
                 console.log('所有连接', list);
+                //需要保存的节点信息
+                console.log(this.InitDatas);
             },
             deleteSelected() {
-                if (_.isObject(this.allInfos.length - 1)) {
-                    this.instance.deleteConnection(this.allInfos[this.allInfos.length - 1]);
-                } else {
-                    this.instance.remove(this.allInfos[this.allInfos.length - 1]);
+                console.log(this.allInfos.length);
+                if (this.allInfos.length === 0) {
+                    this.$swal({
+                        title: "WOOOOW!",
+                        text: "没什么撤销的了",
+                        icon: "warning",
+                        button: "确定",
+                    })
+                    return;
                 }
+                
+                var lInfo = _.last(this.allInfos);
+                
+                //是对象的话，则是撤销(删除)连接信息
+                //否则删除的是节点信息
+                if (_.isObject(lInfo)) {
+                    this.instance.deleteConnection(lInfo);
+                    //删除保存的连接线
+                    this.InitDatas.line.pop();
+                } else {
+                    this.instance.remove(lInfo);
+
+                    //删除节点和位置信息
+                    this.InitDatas.point.pop();
+                    this.InitDatas.location.pop();
+                }
+
                 this.allInfos.pop();
             }
         }
