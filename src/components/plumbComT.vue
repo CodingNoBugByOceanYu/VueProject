@@ -231,6 +231,8 @@
         },
         methods: {
             onDrop: function(dropResult) {
+                var _this = this;
+
                 this.dropItems = applyDrag(this.dropItems, dropResult);
 
                 this.InitDatas.point.push(_.last(this.dropItems));
@@ -267,8 +269,9 @@
 
                     $('#'+ Lnode.id).click(function (e) {
                         $('.point').removeClass('selected');
-
-                        $(e.target).addClass('selected');
+                        $(e.target).parent().addClass('selected');
+                        
+                        _this.showRightPannel = !_this.showRightPannel;
                     });
                 }, 20);
 
@@ -367,6 +370,16 @@
                             isSource: true,
                             isTarget: true,
                             dragAllowedWhenFull: true,
+                        });
+
+                        
+                        $('#'+ point.id).click(function (e) {
+                            console.log('test', e);
+                            $('.point').removeClass('selected');
+
+                            $(e.target).parent().addClass('selected');
+                            
+                            _this.showRightPannel = !_this.showRightPannel;
                         });
                     }
 
@@ -467,7 +480,7 @@
 }
 
 .save {
-    margin-top: 6%;
+    margin-top: -40%;
     overflow-y: auto;
     right: 0px;
     width: 240px;
