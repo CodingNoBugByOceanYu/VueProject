@@ -146,6 +146,9 @@
     import { Container, Draggable } from "vue-smooth-dnd";
     import { applyDrag } from "./utils";
 
+    require('../assets/css/demo.css');
+    require('../assets/css/jsplumb.css');
+
     const color = '#acd';
     var  position = {};
 
@@ -303,17 +306,11 @@
                 this.instance = jsPlumb.getInstance({
                     Connector: 'Flowchart',
                     Endpoint: 'Dot',
-                    EndpointStyle : {
-                        strokeStyle : "transparent",
-                        fillStyle : "transparent",
-                        radius : 9,
-                        lineWidth : 2
-                    },
+                    EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
+                    EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
                     DragOptions: { cursor: 'pointer', zIndex: 5000 },
                     PaintStyle: { lineWidth: 5, stroke: '#445566' },
-                    EndpointStyle: { radius: 9, fill: color, stroke: 'red' },
                     HoverPaintStyle: { stroke: '#ec9f2e', lineWidth: 4 },
-                    EndpointHoverStyle: { fill: '#ec9f2e', stroke: '#acd' },
                     ConnectionOverlays: [
                         ['Arrow', {
                             location: 0.9,
@@ -374,7 +371,6 @@
 
                         
                         $('#'+ point.id).click(function (e) {
-                            console.log('test', e);
                             $('.point').removeClass('selected');
 
                             $(e.target).parent().addClass('selected');
@@ -576,7 +572,7 @@
 }
 
 .pannerlCss {
-    margin-left: 55px;
+    margin-left: 52px;
     z-index: 80;
     position: fixed;
     width: 160px;
@@ -632,7 +628,7 @@
     border: 2px solid #2e6f9a;
     border-radius: 8px;
     position: absolute;
-    z-index: 25;
+    /* z-index: 25; */
 }
 
 .point img{

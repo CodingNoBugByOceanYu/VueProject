@@ -7,9 +7,6 @@
 import $ from 'jquery';
 import { jsPlumb } from 'jsplumb';
 
-require('../assets/css/demo.css');
-require('../assets/css/jsplumb.css');
-
 export default {
   name: 'plumbComT',
   data() {
