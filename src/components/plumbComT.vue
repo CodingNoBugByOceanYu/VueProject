@@ -144,7 +144,7 @@
     import $ from 'jquery'
     
     import { Container, Draggable } from "vue-smooth-dnd";
-    import { applyDrag } from "./utils";
+    import { applyDrag } from "../utils/tool";
 
     require('../assets/css/demo.css');
     require('../assets/css/jsplumb.css');

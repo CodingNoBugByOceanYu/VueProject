@@ -11,7 +11,7 @@ Vue.use(VueI18n)
 //vue-tabs
 import VueTaber from 'vue-tabs'
 import '../static/css/vue-tabs.css'
-import tabs from './tabs.js'
+import tabs from './utils/tabs.js'
 Vue.use(VueTaber)
 //museUI
 import MuseUI from 'muse-ui'
