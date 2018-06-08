@@ -41,3 +41,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 │   └── view                # 各个页面
 ├── static                  # DevServer 静态文件
 └── test                    # 测试
+
+https://github.com/berwin/Blog/issues/14
